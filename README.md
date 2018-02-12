@@ -40,6 +40,7 @@ The query arguments are:
 
 * `date`: In the format: `YYYY-MM-DD`
 * `time`: In the fromat: `HH:mm`
+
   Returns:
 * `slots`: `Array` of `Date` objects that represent the available appointment slots
 
