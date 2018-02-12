@@ -42,14 +42,15 @@ The query arguments are:
 * `time`: In the fromat: `HH:mm`
 
   Returns:
-* `slots`: `Array` of `Date` objects that represent the available appointment slots
+
+* `slots`: `Array` of `Date ISO 8601` that represent the available appointment slots
 
 ### `POST /appointments/book`
 
 Expects an object in the request's body with the following information:
 
 * `userId`: `Int`. the user's ID that this appointment is for
-* `timeSlot`: The user's selected time slot as a `Date` object
+* `timeSlot`: The user's selected time slot as a `Date ISO 8601`
 * `notes`: `String`. Any notes the user added when booking. _note_: not required, can be null
   The endpoint responds with a 200 status if the fields are present + valid, or an error if validation fails.
 
