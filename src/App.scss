@@ -1,8 +1,10 @@
+@import './constants.scss';
+
 header {
   img {
     padding: 12px;
   }
-  border-bottom: solid 1px #dddddd;
+  border-bottom: $border-standard;
 }
 
 .booking-container {
