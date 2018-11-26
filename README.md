@@ -16,8 +16,8 @@ We would like you to use React. Feel free to add whatever libraries you think ar
 We have provided you with a barebones react project (generated with our fork of[create-react-app](https://github.com/facebook/create-react-app)) to work on.
 To run the client:
 
-* `npm install`
-* `npm start`
+* `yarn install`
+* `yarn start`
 
 We have added [SASS](http://sass-lang.com/) to the client which allows you to re-use variables in stylesheets. We have also provided some useful constants in [constants.scss](./src/constants.scss). The final design of the client should look and feel like the design files we have provided
 
@@ -64,4 +64,4 @@ If you feel like spending a bit more time on this then here are some additions y
 
   * `image`: Base64 encoded `String` of an image the user uploaded from their device. Max size: **5mb**
 
-* Feel free to comment and iterate on the design; we would love to hear your opinion about any aspect of this page
+* Feel free to comment and iterate on the design; we would love to hear your opinion about any aspect of this page.
