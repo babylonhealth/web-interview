@@ -13,7 +13,7 @@ For this challenge we are asking you to build a page from the Babylon website; t
 ## Client implementation
 
 We would like you to use React. Feel free to add whatever libraries you think are needed for the task's completion
-We have provided you with a barebones react project (generated with our fork of[create-react-app](https://github.com/facebook/create-react-app)) to work on.
+We have provided you with a barebones react project to work on.
 To run the client:
 
 * `yarn install`
