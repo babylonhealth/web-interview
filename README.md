@@ -10,14 +10,41 @@ For this challenge we are asking you to build a page from the Babylon website; t
 * Use our mock API (defined in `config.js`) to display the **User's information** in the page.
 * Use the API to send a request for **Booking an appointment**.
 
+## Setup
+
+We recommend using NVM for managing node versions on your machine.
+
+```
+brew install nvm
+```
+
+...and installing the required node version with the following command:
+
+```
+nvm install
+```
+
+This repo is using Yarn as it's package manager.
+
+```
+brew install yarn
+```
+
+Installing packages:
+
+```
+yarn install
+```
+
 ## Client implementation
 
 We would like you to use React. Feel free to add whatever libraries you think are needed for the task's completion
 We have provided you with a barebones react project to work on.
 To run the client:
 
-* `yarn install`
-* `yarn start`
+```
+yarn start
+```
 
 We have added [SASS](http://sass-lang.com/) to the client which allows you to re-use variables in stylesheets. We have also provided some useful constants in [constants.scss](./src/constants.scss). The final design of the client should look and feel like the design files we have provided.
 
