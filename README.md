@@ -54,10 +54,8 @@ The final design of the client should look and feel like the design files we hav
 
 ### Pages
 
-* homepage: `design/homepage.png`
-	* menu: `design/menu.png`
-* book an appointment: `design/new-appointment.png`
 * list appointments: `design/appointments.png`
+* book an appointment: `design/new-appointment.png`
 
 ## API
 
@@ -95,6 +93,7 @@ If you feel like spending a bit more time on this then here are some additions y
 
 * edit family members: `design/edit-family-members.png`
 * book an appointment for family member: `design/new-appointment-change-family-member.png`
+* homepage: `design/homepage.png`
 
 #### Bonus API
 
