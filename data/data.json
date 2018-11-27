@@ -77,5 +77,10 @@
     "2019-09-23T18:20:00.000Z",
     "2019-08-30T19:21:30.000Z"
   ],
-  "appointments": []
+  "appointments": [],
+  "family-members": [
+    { "userId": 1, "id": 2 },
+    { "userId": 1, "id": 3 },
+    { "userId": 1, "id": 4 }
+  ]
 }
