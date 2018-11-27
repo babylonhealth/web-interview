@@ -57,9 +57,12 @@ The final design of the client should look and feel like the design files we hav
 * homepage: `design/homepage.png`
 	* menu: `design/menu.png`
 * book an appointment: `design/new-appointment.png`
-* book an appointment for family member: `design/new-appointment-change-family-member.png`
 * list appointments: `design/appointments.png`
+
+#### Bonus points
+
 * edit family members: `design/edit-family-members.png`
+* book an appointment for family member: `design/new-appointment-change-family-member.png`
 
 ## API
 
@@ -84,18 +87,15 @@ Returns:
 Expects an object in the request's body with the following information:
 
 * `userId`: `Int`. the user's ID that this appointment is for
-* `timeSlot`: The user's selected time slot as a `Date ISO 8601`.
+* `dateTime`: The user's selected time slot as a `Date ISO 8601`.
 * `notes`: `String`. Any notes the user added when booking. _note_: not required, can be null.
   The endpoint responds with a 200 status on success.
+* `type`: `String`. The type of the appointment like `GP appointment` or `Physio appointment`.
 
 ## Bonus points
 
 If you feel like spending a bit more time on this then here are some additions you can make to the page!
 
-* There is an extra endpoint in our api at: `GET /users/:userId/family-members`. This will return an array of user Id(s) that represent the user's family members. In the design, add the 'Edit' button next to the user's name. When pressed, this should allow you to choose a family member instead of the user. This should be reflected in your final `POST` request, where the `userId` should be the family member's rather than the user's.
-
-* Add an 'Upload picture' capability to the request. This should be added to the final `POST` request as such:
-
-  * `image`: Base64 encoded `String` of an image the user uploaded from their device. Max size: **5mb**
+* There is an extra endpoint in our api at: `GET /users/:userId/family-members`. This will return an array of user Id(s) that represent the user's family members. In the design, add the 'Change' button next to the user's name in `design/new-appointment.png`. When pressed, this should allow you to choose a family member instead of the user. This should be reflected in your final `POST` request, where the `userId` should be the family member's rather than the user's.
 
 * Feel free to comment and iterate on the design; we would love to hear your opinion about any aspect of this page.
