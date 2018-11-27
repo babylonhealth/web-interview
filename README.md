@@ -50,7 +50,7 @@ We have added [SASS](http://sass-lang.com/) to the client which allows you to re
 
 ## API
 
-### `GET /user/:userId`
+### `GET /users/:userId`
 
 Returns a `user` object with the following info:
 
@@ -60,32 +60,26 @@ Returns a `user` object with the following info:
 * `dateOfBirth`: `Date`. The user's Date of Birth.
   _NOTE_: `userId` can be any Integer number; the results will not be affected but it **must** be present in the request's endpoint.
 
-### `GET /appointments/availability?<availability query>`
+### `GET /availableSlots`
 
-Takes in a query for available appointments at a specific time.
-The query arguments are:
+Returns:
 
-* `date`: In the format: `YYYY-MM-DD`.
-* `time`: In the fromat: `HH:mm`.
+* `Array` of `Date ISO 8601` that represent the available appointment slots.
 
-  Returns:
-
-* `slots`: `Array` of `Date ISO 8601` that represent the available appointment slots.
-
-### `POST /appointments/book`
+### `POST /appointments`
 
 Expects an object in the request's body with the following information:
 
 * `userId`: `Int`. the user's ID that this appointment is for
 * `timeSlot`: The user's selected time slot as a `Date ISO 8601`.
 * `notes`: `String`. Any notes the user added when booking. _note_: not required, can be null.
-  The endpoint responds with a 200 status if the fields are present + valid, or an error if validation fails.
+  The endpoint responds with a 200 status on success.
 
 ## Bonus points
 
 If you feel like spending a bit more time on this then here are some additions you can make to the page!
 
-* There is an extra endpoint in our api at: `GET /user/:userId/family-members`. This will return an array of user objects (similar to calling `/user/:userId`) that represent the user's family members. In the design, add the 'Edit' button next to the user's name. When pressed, this should allow you to choose a family member instead of the user. This should be reflected in your final `POST` request, where the `userId` should be the family member's rather than the user's.
+* There is an extra endpoint in our api at: `GET /users/:userId/family-members`. This will return an array of user Id(s) that represent the user's family members. In the design, add the 'Edit' button next to the user's name. When pressed, this should allow you to choose a family member instead of the user. This should be reflected in your final `POST` request, where the `userId` should be the family member's rather than the user's.
 
 * Add an 'Upload picture' capability to the request. This should be added to the final `POST` request as such:
 

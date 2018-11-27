@@ -6,7 +6,7 @@ import './App.scss'
 
 class App extends Component {
   componentDidMount() {
-    fetch(`${API_ENDPOINT}/user/123`)
+    fetch(`${API_ENDPOINT}/users/1`)
       .then(res => res.json())
       .then(() => {
         // TODO: Handle response here
