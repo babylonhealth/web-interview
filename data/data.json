@@ -77,7 +77,15 @@
     "2019-09-23T18:20:00.000Z",
     "2019-08-30T19:21:30.000Z"
   ],
-  "appointments": [],
+  "appointments": [
+    {
+      "id": 1,
+      "notes": "I have a headache.",
+      "userId": 1,
+      "type": "GP appointment",
+      "dateTime": "2019-08-30T20:21:30.000Z"
+    }
+  ],
   "family-members": [
     { "userId": 1, "id": 2 },
     { "userId": 1, "id": 3 },
