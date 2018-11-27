@@ -4,6 +4,10 @@ Thanks for taking the time to complete our frontend coding test!
 
 For this challenge we are asking you to build a page from the Babylon website; the appointment-booking page! Though it has been slightly modified, this is very similar to what we are currently buildling at Babylon.
 
+You can start with forking this repository and off you go.
+
+Good luck!
+
 ## Task
 
 * We have provided you with a designs folder that display what we expect the page to look like. The task is only for mobile screens up to **716** in width so don't worry about displaying in larger screens.
