@@ -1,9 +1,12 @@
 @import './constants.scss';
 
 header {
+  padding: $gutter-size--large;
+
   img {
-    padding: 12px;
+    max-height: 33px;
   }
+
   border-bottom: $border-standard;
 }
 
