@@ -46,7 +46,20 @@ To run the client:
 yarn start
 ```
 
-We have added [SASS](http://sass-lang.com/) to the client which allows you to re-use variables in stylesheets. We have also provided some useful constants in [constants.scss](./src/constants.scss). The final design of the client should look and feel like the design files we have provided.
+We have added [SASS](http://sass-lang.com/) to the client which allows you to re-use variables in stylesheets. We have also provided some useful constants in [constants.scss](./src/constants.scss).
+
+### Design
+
+The final design of the client should look and feel like the design files we have provided in `/design`.
+
+### Pages
+
+* homepage: `design/homepage.png`
+	* menu: `design/menu.png`
+* book an appointment: `design/new-appointment.png`
+* book an appointment for family member: `design/new-appointment-change-family-member.png`
+* list appointments: `design/appointments.png`
+* edit family members: `design/edit-family-members.png`
 
 ## API
 
