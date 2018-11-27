@@ -59,11 +59,6 @@ The final design of the client should look and feel like the design files we hav
 * book an appointment: `design/new-appointment.png`
 * list appointments: `design/appointments.png`
 
-#### Bonus points
-
-* edit family members: `design/edit-family-members.png`
-* book an appointment for family member: `design/new-appointment-change-family-member.png`
-
 ## API
 
 ### `GET /users/:userId`
@@ -95,6 +90,13 @@ Expects an object in the request's body with the following information:
 ## Bonus points
 
 If you feel like spending a bit more time on this then here are some additions you can make to the page!
+
+#### Pages
+
+* edit family members: `design/edit-family-members.png`
+* book an appointment for family member: `design/new-appointment-change-family-member.png`
+
+#### Bonus API
 
 * There is an extra endpoint in our api at: `GET /users/:userId/family-members`. This will return an array of user Id(s) that represent the user's family members. In the design, add the 'Change' button next to the user's name in `design/new-appointment.png`. When pressed, this should allow you to choose a family member instead of the user. This should be reflected in your final `POST` request, where the `userId` should be the family member's rather than the user's.
 
