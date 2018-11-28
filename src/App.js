@@ -1,22 +1,20 @@
 import React, { Component } from 'react'
 
-import logo from './logo.svg'
-import { API_ENDPOINT_DEV } from './config'
+import logo from './logo.png'
+import { API_ENDPOINT } from './config'
+
 import './App.scss'
 
 class App extends Component {
-  constructor() {
-    super()
-  }
-
-  componentWillMount() {
-    fetch(`${API_ENDPOINT_DEV}/user/123`)
+  componentDidMount() {
+    fetch(`${API_ENDPOINT}/users/1`)
       .then(res => res.json())
-      .then(data => {
-        console.log(data)
+      .then(() => {
         // TODO: Handle response here
       })
-      .catch(console.error)
+      .catch(() => {
+        // TODO: Handle error here
+      })
   }
 
   render() {

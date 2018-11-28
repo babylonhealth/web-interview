@@ -1,2 +1,4 @@
-export const API_ENDPOINT = 'https://web-interview-server.herokuapp.com'
-export const API_ENDPOINT_DEV = 'http://localhost:3001'
+const API_ENDPOINT = 'http://localhost:3010'
+
+// eslint-disable-next-line import/prefer-default-export
+export { API_ENDPOINT }

@@ -2,21 +2,15 @@
   "name": "web-interview",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "babylon-component-library": "^0.1.18",
-    "babylon-react-scripts": "1.0.19",
-    "fetch": "^1.1.0",
-    "normalize.css": "^7.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0"
+  "engines": {
+    "node": ">=10.13"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn server & react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
     "precommit": "lint-staged",
-    "checkBranch": "./scripts/check_branch.sh"
+    "server": "yarn json-server --watch ./data/data.json --port 3010"
   },
   "lint-staged": {
     "*.js": [
@@ -25,15 +19,15 @@
       "git add"
     ]
   },
+  "dependencies": {
+    "json-server": "^0.14.0",
+    "node-sass": "^4.10.0",
+    "normalize.css": "^8.0.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
   "devDependencies": {
-    "eslint": "^4.7.2",
-    "eslint-config-airbnb": "^15.1.0",
-    "eslint-config-prettier": "^2.6.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^5.1.0",
-    "eslint-plugin-prettier": "^2.3.1",
-    "eslint-plugin-react": "^7.4.0",
-    "lint-staged": "^4.2.3",
-    "prettier": "^1.7.0"
-  }
+    "react-scripts": "^2.1.1"
+  },
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }
