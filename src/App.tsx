@@ -10,19 +10,18 @@ import Appointments from './pages/Appointments'
 import BookAppointment from './pages/BookAppointment'
 
 class App extends Component {
-  componentDidMount() {
+  public componentDidMount() {
     fetch(`${API_ENDPOINT}/users/1`)
       .then(res => res.json())
-      .then(res => {
-        // TODO: Handle response here
-        console.log(res)
+      .then(user => {
+        // expect the logged in user object here
       })
       .catch(() => {
-        // TODO: Handle error here
+        // Use an Error boundary here
       })
   }
 
-  render() {
+  public render() {
     return (
       <Router>
         <div className="app">
