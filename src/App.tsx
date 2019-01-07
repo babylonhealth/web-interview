@@ -9,15 +9,30 @@ import Home from './pages/Home'
 import Appointments from './pages/Appointments'
 import BookAppointment from './pages/BookAppointment'
 
-class App extends Component {
+export interface AuthUser {
+  avatar: string
+  firstName: string
+  lastName: string
+}
+
+interface State {
+  user: AuthUser | null
+}
+
+class App extends Component<{}, State> {
+  public state = {
+    user: null,
+  }
+
   public componentDidMount() {
     fetch(`${API_ENDPOINT}/users/1`)
       .then(res => res.json())
       .then(user => {
         // expect the logged in user object here
+        this.setState({ user })
       })
       .catch(() => {
-        // Use an Error boundary here
+        // handle failed API call here
       })
   }
 
@@ -29,7 +44,11 @@ class App extends Component {
             <img src={logo} className="app-logo" alt="logo" />
           </header>
           <>
-            <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path="/"
+              render={props => <Home user={this.state.user} />}
+            />
             <Route exact path="/appointments" component={Appointments} />
             <Route exact path="/book" component={BookAppointment} />
           </>
