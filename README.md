@@ -69,8 +69,8 @@ Returns a `user` object with the following info:
 
 * `firstName`: `String` of the user's first name.
 * `lastName`: `String` of the user's last name.
-* `avatar`: `String`. Base64 representation of the user's avatar image.
-* `dateOfBirth`: `Date`. The user's Date of Birth.
+* `avatar`: `String` Base64 representation of the user's avatar image.
+* `dateOfBirth`: `Date` The user's Date of Birth.
   _NOTE_: `userId` can be any Integer number; the results will not be affected but it **must** be present in the request's endpoint.
 
 ### `GET /availableSlots`
@@ -79,15 +79,25 @@ Returns:
 
 * `Array` of `Date ISO 8601` that represent the available appointment slots.
 
+### `GET /appointments/?userId=:userId`
+
+Returns an `Array` of `appointment` objects that represent all booked appointments for the given userId
+
+* `id`: `Int` The unique id of this appointment.
+* `userId`: `Int` The user's ID that this appointment is for.
+* `dateTime`: The user's selected time slot as a `Date ISO 8601`.
+* `notes`: `String` Any notes the user added when booking. _note_: not required, can be null.
+* `type`: `String` The type of the appointment like `GP appointment` or `Physio appointment`.
+
 ### `POST /appointments`
 
 Expects an object in the request's body with the following information:
 
-* `userId`: `Int`. the user's ID that this appointment is for
+* `userId`: `Int` The user's ID that this appointment is for.
 * `dateTime`: The user's selected time slot as a `Date ISO 8601`.
-* `notes`: `String`. Any notes the user added when booking. _note_: not required, can be null.
+* `notes`: `String` Any notes the user added when booking. _note_: not required, can be null.
   The endpoint responds with a 200 status on success.
-* `type`: `String`. The type of the appointment like `GP appointment` or `Physio appointment`.
+* `type`: `String` The type of the appointment like `GP appointment` or `Physio appointment`.
 
 ## Bonus points
 
