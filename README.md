@@ -1,10 +1,6 @@
 # Babylon Web technical recruitment test
 
-Thanks for taking the time to complete our frontend coding test!
-
-For this challenge we are asking you to build a page from the Babylon website; the appointment-booking page! Though it has been slightly modified, this is very similar to what we are currently buildling at Babylon.
-
-You can start with forking this repository and off you go.
+Thanks for taking the time to complete our frontend coding test! You can start with forking this repository and off you go.
 
 Good luck!
 
