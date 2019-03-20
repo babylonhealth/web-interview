@@ -22,6 +22,8 @@ It's helpful for us if you include some notes to explain the decisions you make.
 
 We'd like you to use React. We have provided a skeleton for the React application and included [SASS](http://sass-lang.com/) for styling. We have also provided some useful constants in [constants.scss](./src/constants.scss). Feel free to add any additional libraries which you think are needed for the task.
 
+We have also included a mock API which is documented below.
+
 We'd like you to build two pages. We've provided designs for mobile so don't worry about making it look good on desktop.
 
 # New appointment page
