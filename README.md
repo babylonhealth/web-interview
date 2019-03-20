@@ -39,7 +39,6 @@ Returns a `user` object with the following info:
 * `lastName`: `String` of the user's last name.
 * `avatar`: `String` Base64 representation of the user's avatar image.
 * `dateOfBirth`: `Date` The user's Date of Birth.
-  _NOTE_: `userId` can be any Integer number
 
 ### `GET /availableSlots`
 
