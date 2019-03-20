@@ -58,8 +58,9 @@ Expects an object in the request's body with the following information:
 * `userId`: `Int` The user's ID that this appointment is for.
 * `dateTime`: The user's selected time slot as a `Date ISO 8601`.
 * `notes`: `String` Any notes the user added when booking. _note_: not required, can be null.
-  The endpoint responds with a 200 status on success.
 * `type`: `String` The type of the appointment like `GP appointment` or `Physio appointment`.
+
+The endpoint responds with a 200 status on success.
 
 # Upcoming appointments page
 
