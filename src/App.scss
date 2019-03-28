@@ -1,6 +1,6 @@
 @import './constants.scss';
 
-header {
+.app-header {
   padding: $gutter-size--large;
 
   img {
@@ -10,6 +10,14 @@ header {
   border-bottom: $border-standard;
 }
 
-.booking-container {
-  padding-left: 12px;
+.button {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $primary-dark;
+  color: $secondary-light;
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  display: inline-block;
+  text-align: center;
 }
