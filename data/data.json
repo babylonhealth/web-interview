@@ -11,37 +11,44 @@
   "availableSlots": [
     {
       "id": 1,
-      "type": ["gp"],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-11-27T10:11:00.000Z"
     },
     {
       "id": 2,
-      "type": ["specialist", "gp"],
+      "consultantType": ["specialist", "gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-12-01T14:16:30.000Z"
     },
     {
       "id": 3,
-      "type": ["gp"],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-10-08T16:17:30.000Z"
     },
     {
       "id": 4,
-      "type": ["therapist", "gp"],
+      "consultantType": ["therapist", "gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-11-16T16:18:30.000Z"
     },
     {
       "id": 5,
-      "type": ["specialist"],
+      "consultantType": ["specialist"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-12-26T17:19:00.000Z"
     },
     {
       "id": 6,
-      "type": ["gp"],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-09-23T18:20:00.000Z"
     },
     {
       "id": 7,
-      "type": ["gp"],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-08-30T19:21:30.000Z"
     }
   ],
@@ -50,7 +57,8 @@
       "id": 1,
       "notes": "I have a headache.",
       "userId": 1,
-      "type": "GP appointment",
+      "consultantType": "GP appointment",
+      "appointmentType": ["audio", "video"],
       "dateTime": "2019-08-30T20:21:30.000Z"
     }
   ]

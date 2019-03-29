@@ -12,6 +12,8 @@ We'd like you to build an application that:
 - is well tested
 - is accessible
 - looks like the designs provided (it doesn't have to be "pixel perfect")
+- mobile first and responsive
+- clean and understandable GIT history
 
 It's helpful for us if you include some notes to explain the decisions you make.
 
@@ -19,9 +21,16 @@ It's helpful for us if you include some notes to explain the decisions you make.
 
 We'd like you to use React. We have provided a skeleton for the React application and included [SASS](http://sass-lang.com/) for styling. We have also provided some useful constants in [constants.scss](./src/constants.scss). Feel free to add any additional libraries which you think are needed for the task.
 
+We included some initial code in App.js that we would like you to refactor.
+
 We have also included a mock API which is documented below.
 
-We'd like you to build one page. We've provided the design, try to make it mobile first and responsive so that it works on all viewports.
+We'd like you to build one page. We've provided the design. On this page the user can:
+
+- Filter appointments by their type (GP, therapist, specialist)
+- Select date and time
+- Select appointment type (audio, video)
+- Book an appointment
 
 # New appointment page
 
