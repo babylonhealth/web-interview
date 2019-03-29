@@ -21,7 +21,7 @@ We'd like you to use React. We have provided a skeleton for the React applicatio
 
 We have also included a mock API which is documented below.
 
-We'd like you to build two pages. We've provided designs for mobile so don't worry about making it look good on desktop.
+We'd like you to build one page. We've provided the design, try to make it mobile first and responsive so that it works on all viewports.
 
 # New appointment page
 
