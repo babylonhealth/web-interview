@@ -13,7 +13,7 @@ We'd like you to build an application that:
 - is accessible
 - looks like the designs provided (it doesn't have to be "pixel perfect")
 - mobile first and responsive
-- clean and understandable GIT history
+- clean and understandable Git history
 
 It's helpful for us if you include some notes to explain the decisions you make.
 
@@ -36,7 +36,7 @@ We'd like you to build one page. We've provided the design. On this page the use
 
 ### Design
 
-![New Appointment Design](./design/new-appointment.png)
+![New Appointment Design](./design/new-appointment.png?v=1)
 
 ### Data
 
@@ -55,7 +55,14 @@ Returns a `user` object with the following info:
 
 Returns:
 
-- `Array` of `Date ISO 8601` that represent the available appointment slots.
+- `Array` of available appointments
+
+Each available appointment is an object which contains
+
+- `id`: `Int` the appointment id
+- `consultantType`: `Array` of `String` with the available consultant types
+- `appointmentType`: `Array` of `String` with the available appointment types
+- `time`: `Date ISO 8601` the time of the appointment
 
 ### `POST /appointments`
 
