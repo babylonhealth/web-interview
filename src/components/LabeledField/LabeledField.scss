@@ -1,0 +1,19 @@
+@import '../../constants.scss';
+
+.labeled-field {
+
+  .field-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: $gutter-size--large;
+
+    .label {
+      margin-left: 1em;
+      font-weight: 700;
+    }
+  }
+
+  .content {
+    margin-left: calc(24px + 1em)
+  }
+}

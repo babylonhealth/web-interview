@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 
 import AppHeader from './components/AppHeader/AppHeader'
+import Separator from './components/Separator/Separator'
 
-import { API_ENDPOINT } from './config'
+import StethoscopeIcon from './components/Icons/StethoscopeIcon'
+
+// import { API_ENDPOINT } from './config'
 
 import './App.scss'
+import UserHeader from './components/UserHeader/UserHeader'
+import LabeledField from './components/LabeledField/LabeledField'
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +27,12 @@ class App extends Component {
       <div className="app">
         <AppHeader />
         <main>
-          <header>New Appoitment</header>
+          <header>New Appointment</header>
+          <UserHeader name="Jane Doe" />
+          <Separator />
+          <LabeledField icon={<StethoscopeIcon />} label="Consultant Type">
+            <button>Button</button>
+          </LabeledField>
         </main>
       </div>
     )
