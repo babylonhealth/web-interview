@@ -1,0 +1,23 @@
+@import '../../constants.scss';
+
+.button {
+  cursor: pointer;
+  
+  padding: $gutter-size--large;
+
+  background-color: $positive;
+  color: $secondary-light;
+  border: none;
+  border-radius: 8px;
+
+  &.invert {
+    background-color: $secondary-light;
+    color: $label-color;
+    border: $border-standard
+  }
+
+  &.fullwidth {
+    display: block;
+    width: 100%;
+  }
+}

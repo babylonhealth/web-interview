@@ -14,6 +14,8 @@ import TimeIcon from './components/Icons/TimeIcon'
 import CameraIcon from './components/Icons/CameraIcon'
 import DocumentIcon from './components/Icons/DocumentIcon'
 import PhotoIcon from './components/Icons/PhotoIcon'
+import Button from './components/Button/Button'
+import TextArea from './components/TextArea/TextArea'
 
 class App extends Component {
   constructor(props) {
@@ -46,15 +48,15 @@ class App extends Component {
             <button>Button</button>
           </LabeledField>
           <LabeledField icon={<DocumentIcon />} label="Notes">
-            <button>Button</button>
+            <TextArea />
           </LabeledField>
           <LabeledField icon={<PhotoIcon />} label="Attach a photo">
-            <button>Button</button>
+            <Button invert>+</Button>
           </LabeledField>
 
           <Separator />
 
-          <button className="book-button">Book</button>
+          <Button fullwidth>Book</Button>
         </main>
       </div>
     )

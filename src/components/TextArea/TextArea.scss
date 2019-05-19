@@ -1,0 +1,11 @@
+@import '../../constants.scss';
+
+.textarea {
+  padding: $gutter-size;
+  width: 100%;
+  min-height: 4em;
+  resize: vertical;
+  box-sizing: border-box;
+  border: $border-standard;
+  border-radius: 8px;
+}
