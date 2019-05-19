@@ -2,6 +2,8 @@
 
 .labeled-field {
 
+  margin-bottom: 2 * $gutter-size--large;
+  
   .field-header {
     display: flex;
     align-items: center;
