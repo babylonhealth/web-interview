@@ -74,6 +74,12 @@ class App extends Component {
     )
   }
 
+  updateEvent = event => {
+    this.setState({
+      notes: event.target.value,
+    })
+  }
+
   render() {
     const currentAppointment =
       this.state.availableSlots.find(val => {
@@ -91,13 +97,7 @@ class App extends Component {
         }
       }
     )
-
-    const updateEvent = event => {
-      this.setState({
-        notes: event.target.value,
-      })
-    }
-
+    // move function outside of render
     const postUserData = () => {
       const userId = Number(currentAppointment.id)
       const notes = String(this.state.notes) || null
@@ -178,7 +178,7 @@ class App extends Component {
               placeholder="Describe your symptoms"
               value={this.state.notes}
               onChange={event => {
-                updateEvent(event)
+                this.updateEvent(event)
               }}
             />
           </div>
