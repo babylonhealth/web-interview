@@ -17,11 +17,10 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.notesRef = React.createRef()
-    // clean up user []
     this.state = {
-      selectedAppointmentType: 'gp',
       selectedAppointmentTime: '',
+      selectedConsultantType: 'gp',
+      selectedAppointmentType: '',
       notes: '',
       availableSlots: [],
       user: [],
@@ -29,7 +28,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // TODO: Make generic fetch function
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then(res => res.json())
       .then(availableSlots => {
@@ -48,25 +46,48 @@ class App extends Component {
   }
 
   render() {
-    const selectedAppointmentType = type => {
-      this.setState({ selectedAppointmentTime: type })
+    const setSelectedAppointmentType = type => {
+      this.setState({ selectedAppointmentType: type })
     }
 
-    const updateAppointmentType = type => {
-      this.setState({ selectedAppointmentType: type })
+    const setConsultantType = type => {
+      this.setState({ selectedConsultantType: type })
+    }
+
+    const setAppointmentTime = type => {
+      this.setState({ selectedAppointmentTime: type })
     }
 
     const validAppointments = this.state.availableSlots.filter(
       availableSlot => {
         if (
           availableSlot.consultantType.includes(
-            this.state.selectedAppointmentType
+            this.state.selectedConsultantType
           )
         ) {
           return availableSlot
         }
       }
     )
+
+    const postUserData = () => {
+      // Refactor!
+      const userId = Number(this.state.user[0].id)
+      const dateTime = this.state.selectedAppointmentTime
+      const notes = String(this.state.notes) || null
+      const type = `${this.state.selectedConsultantType.toUpperCase()} appointment`
+      const body = `userId=${userId}&dateTime=${dateTime}&notes=${notes}&type=${type}`
+
+      fetch(`${API_ENDPOINT}/appointments`, {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/x-www-form-urlencoded',
+        }),
+        body,
+      }).catch(error => {
+        console.error(error)
+      })
+    }
 
     const typeConsultant = this.state.availableSlots
       .map(availableSlot => availableSlot.consultantType)
@@ -78,7 +99,7 @@ class App extends Component {
       validAppointments,
       'appointmentType'
     )
-    // TODO: Stop buttons being highlighted by default unless consultant type
+
     return (
       <div className="app">
         <Header />
@@ -96,7 +117,7 @@ class App extends Component {
           <div className="buttons-row">
             <AppointmentDetailsRow
               data={uniqueConsultantTypes}
-              onClick={updateAppointmentType}
+              onClick={setConsultantType}
             />
           </div>
           <div className="main-top">
@@ -106,7 +127,7 @@ class App extends Component {
           <div className="buttons-row">
             <AppointmentDetailsRow
               data={availableTimes}
-              onClick={selectedAppointmentType}
+              onClick={setAppointmentTime}
             />
           </div>
           <div className="main-top">
@@ -114,7 +135,10 @@ class App extends Component {
             <div>Appointment Type</div>
           </div>
           <div className="buttons-row">
-            <AppointmentDetailsRow data={uniqueAppointmentTypes} />
+            <AppointmentDetailsRow
+              data={uniqueAppointmentTypes}
+              onClick={setSelectedAppointmentType}
+            />
           </div>
           <div className="main-top">
             <Notes />
@@ -132,7 +156,7 @@ class App extends Component {
               }}
             />
           </div>
-          <Button text="Book" styles="large-button" />
+          <Button text="Book" styles="large-button" onClick={postUserData} />
         </div>
       </div>
     )

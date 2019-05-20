@@ -12,6 +12,7 @@ class AppointmentDetails extends Component {
             currentIndex: 0,
         }
     }
+
     render () {
         const updateButtonStyle = index => {
             this.setState({ currentIndex: index })
