@@ -51,36 +51,34 @@ class App extends Component {
       })
   }
 
+  setAppointmentTime = type => {
+    this.setState({ selectedAppointmentTime: type })
+  }
+
+  setSelectedAppointmentType = type => {
+    this.setState({ selectedAppointmentType: type })
+  }
+
+  setConsultantType = type => {
+    this.setState({ selectedConsultantType: type })
+    this.setState(
+      {
+        selectedConsultantType: type,
+      },
+      () => {
+        const selectedTime = this.state.availableSlots.find(val => {
+          return val.consultantType.includes(this.state.selectedConsultantType)
+        })
+        this.setState({ selectedAppointmentTime: selectedTime.time })
+      }
+    )
+  }
+
   render() {
     const currentAppointment =
       this.state.availableSlots.find(val => {
         return val.time === this.state.selectedAppointmentTime
       }) || []
-
-    const setConsultantType = type => {
-      this.setState({ selectedConsultantType: type })
-      this.setState(
-        {
-          selectedConsultantType: type,
-        },
-        () => {
-          const selectedTime = this.state.availableSlots.find(val => {
-            return val.consultantType.includes(
-              this.state.selectedConsultantType
-            )
-          })
-          this.setState({ selectedAppointmentTime: selectedTime.time })
-        }
-      )
-    }
-
-    const setSelectedAppointmentType = type => {
-      this.setState({ selectedAppointmentType: type })
-    }
-
-    const setAppointmentTime = type => {
-      this.setState({ selectedAppointmentTime: type })
-    }
 
     const validAppointments = this.state.availableSlots.filter(
       availableSlot => {
@@ -147,7 +145,7 @@ class App extends Component {
             <AppointmentDetailsRow
               availableSlots={this.state.availableSlots}
               data={uniqueConsultantTypes}
-              onClick={setConsultantType}
+              onClick={this.setConsultantType}
             />
           </div>
           <div className="main-top">
@@ -157,7 +155,7 @@ class App extends Component {
           <div className="buttons-row">
             <AppointmentDetailsRow
               data={availableTimes}
-              onClick={setAppointmentTime}
+              onClick={this.setAppointmentTime}
             />
           </div>
           <div className="main-top">
@@ -167,7 +165,7 @@ class App extends Component {
           <div className="buttons-row">
             <AppointmentDetailsRow
               data={uniqueAppointmentTypes}
-              onClick={setSelectedAppointmentType}
+              onClick={this.setSelectedAppointmentType}
             />
           </div>
           <div className="main-top">
