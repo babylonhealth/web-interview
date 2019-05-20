@@ -1,6 +1,6 @@
 @import '../../constants.scss';
 
 .separator {
-  margin: $gutter-size--large 0;
+  margin: 2 *$gutter-size--large 0;
   border-bottom: $border-standard;
 }

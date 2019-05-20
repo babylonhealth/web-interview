@@ -1,0 +1,59 @@
+@import '../../constants.scss';
+
+.radiogroup {
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  legend {
+    border: none;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+
+    li {
+      display: inline-block;
+    }
+  }
+
+  .radio {
+    &:focus+label {
+      // box-shadow: #0c6abb 0px 0px 2px 2px;
+      border: 1px solid $focus-border !important;
+      background-color: $focus-border !important;
+    }
+
+    &:checked+label {
+      color: $secondary-light;
+      background-color: $positive;
+      border: 1px solid $positive;
+    }
+
+    &+label {
+      cursor: pointer;
+      display: block;
+      white-space: nowrap;
+      padding: 8px 18px;
+      color: $label-color;
+      background-color: $secondary-light;
+      margin-right: 1em;
+      border: $border-standard;
+      border-radius: 30px;
+    }
+  }
+
+  .notVisible {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }  
+}

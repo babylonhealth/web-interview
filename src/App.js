@@ -16,6 +16,7 @@ import DocumentIcon from './components/Icons/DocumentIcon'
 import PhotoIcon from './components/Icons/PhotoIcon'
 import Button from './components/Button/Button'
 import TextArea from './components/TextArea/TextArea'
+import RadioGroup from './components/RadioGroup/RadioGroup'
 
 class App extends Component {
   constructor(props) {
@@ -23,12 +24,29 @@ class App extends Component {
 
     this.state = {
       userId: 1,
-      selectedAppointmentType: 'gp',
+      selectedAppointmentType: 'video',
       availableSlots: [],
     }
+
+    this.handleTypeChange = this.handleTypeChange.bind(this)
+  }
+
+  handleTypeChange(e) {
+    this.setState({
+      selectedAppointmentType: e.target.value,
+    })
   }
 
   render() {
+    const consultantTypes = [
+      ['GP', 'gp'],
+      ['Specialist', 'specialist'],
+      ['Nurse', 'nurse'],
+      ['Therapist', 'therapist'],
+      ['Triage Nurse', 'triage_nurse'],
+      ['Specialist Nurse', 'specialist_nurse'],
+    ]
+
     return (
       <div className="app">
         <AppHeader />
@@ -39,17 +57,26 @@ class App extends Component {
           <Separator />
 
           <LabeledField icon={<StethoscopeIcon />} label="Consultant Type">
-            <button>Button</button>
+            <RadioGroup
+              legend="Consultant Type"
+              options={consultantTypes}
+              selectedValue={this.state.selectedAppointmentType}
+              onChange={this.handleTypeChange}
+            />
           </LabeledField>
+
           <LabeledField icon={<TimeIcon />} label="Date & Time">
             <button>Button</button>
           </LabeledField>
+
           <LabeledField icon={<CameraIcon />} label="Appointment Type">
             <button>Button</button>
           </LabeledField>
+
           <LabeledField icon={<DocumentIcon />} label="Notes">
             <TextArea />
           </LabeledField>
+
           <LabeledField icon={<PhotoIcon />} label="Attach a photo">
             <Button invert>+</Button>
           </LabeledField>

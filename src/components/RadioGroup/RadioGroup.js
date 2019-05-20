@@ -1,0 +1,44 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import './RadioGroup.scss'
+
+export default function RadioGroup({
+  legend,
+  inputName,
+  selectedValue,
+  options,
+  onChange,
+}) {
+  return (
+    <fieldset className="radiogroup">
+      <legend className="notVisible">{legend}</legend>
+      <ul>
+        {options.map(([label, value], index) => (
+          <li key={value}>
+            <input
+              className="radio notVisible"
+              type="radio"
+              name={inputName}
+              id={value}
+              value={value}
+              checked={
+                (!selectedValue && index === 0) || selectedValue === value
+              }
+              onChange={onChange}
+            />
+            <label htmlFor={value}>{label}</label>
+          </li>
+        ))}
+      </ul>
+    </fieldset>
+  )
+}
+
+RadioGroup.propTypes = {
+  legend: PropTypes.string.isRequired,
+  inputName: PropTypes.string.isRequired,
+  selectedValue: PropTypes.string,
+  options: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)).isRequired,
+  onChange: PropTypes.func.isRequired,
+}
