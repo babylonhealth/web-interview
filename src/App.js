@@ -6,6 +6,7 @@ import Medical from 'react-feather/dist/icons/git-branch'
 
 import API_ENDPOINT from './config'
 import { filterByType, removeDuplicates } from './helpers/appointment-filters'
+import converToISOString from './helpers/validators'
 import Profile from './containers/profile/Profile'
 import AppointmentDetailsRow from './containers/appointment-details/AppointmentDetails'
 import Header from './components/header/Header'
@@ -76,8 +77,8 @@ class App extends Component {
 
     const postUserData = () => {
       const userId = Number(this.state.user[0].id)
-      const dateTime = this.state.selectedAppointmentTime
       const notes = String(this.state.notes) || null
+      const dateTime = converToISOString(this.state.selectedAppointmentTime)
       const type = `${this.state.selectedConsultantType.toUpperCase()} appointment`
       const body = `userId=${userId}&dateTime=${dateTime}&notes=${notes}&type=${type}`
 

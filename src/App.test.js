@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
 import 'core-js/modules/es.array.flat-map'
+
+import App from './App'
 import timeFormat from './helpers/time-formatter'
 import { removeDuplicates, filterByType } from './helpers/appointment-filters'
 import mockAppointment from './mock-data'
@@ -31,7 +32,7 @@ describe('Filter by type', () => {
   test('filter by time', () => {
     expect(filterByType(mockAppointment, 'time')).toEqual(['10:11', '16:18'])
   })
-  test('filter by appointmentType', () => {
+  test('filter by appointment type', () => {
     expect(filterByType(mockAppointment, 'appointmentType')).toEqual([
       'audio',
       'video',

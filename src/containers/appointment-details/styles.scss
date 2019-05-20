@@ -1,7 +1,6 @@
 @import '../../constants.scss';
 
-// TODO: re-use styles between classes
-.button {
+.button, .active {
 	color: $secondary-dark;
 	border: 1px solid $light-grey;
 	border-radius: 20px;
@@ -15,9 +14,4 @@
 	border: none;
 	color: white;
 	background: $positive-light;
-	border-radius: 20px;
-	height: 40px;
-	width: 80px;
-	margin: 10px;
-	cursor: pointer;
 }
