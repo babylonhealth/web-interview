@@ -4,7 +4,7 @@ import logo from './logo.png'
 import { API_ENDPOINT } from './config'
 
 import './App.scss'
-
+// test commit
 class App extends Component {
   constructor(props) {
     super(props)
