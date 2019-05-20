@@ -22,11 +22,10 @@ class AppointmentDetails extends Component {
         return this.props.data.map((consultantAppoint, index) => {
             const style = index === this.state.currentIndex ? "active" : "button";
             const formattedValue = formatToTime(consultantAppoint);
-
             return (
                 <Button
                     key={consultantAppoint}
-                    text={formattedValue}
+                    text={formattedValue === 'gp' ? formattedValue.toUpperCase() : formattedValue}
                     styles={style}
                     onClick={() => {
                         this.props.onClick && this.props.onClick(consultantAppoint);

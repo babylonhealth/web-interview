@@ -107,6 +107,7 @@ class App extends Component {
 
       fetch(`${API_ENDPOINT}/appointments`, {
         method: 'POST',
+        status: 'test',
         headers: new Headers({
           'Content-Type': 'application/x-www-form-urlencoded',
         }),
