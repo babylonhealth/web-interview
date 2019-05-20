@@ -30,7 +30,10 @@ describe('Remove duplicates', () => {
 
 describe('Filter by type', () => {
   test('filter by time', () => {
-    expect(filterByType(mockAppointment, 'time')).toEqual(['10:11', '16:18'])
+    expect(filterByType(mockAppointment, 'time')).toEqual([
+      '2019-11-27T10:11:00.000Z',
+      '2019-11-16T16:18:30.000Z',
+    ])
   })
   test('filter by appointment type', () => {
     expect(filterByType(mockAppointment, 'appointmentType')).toEqual([

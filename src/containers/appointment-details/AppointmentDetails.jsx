@@ -41,7 +41,6 @@ class AppointmentDetails extends Component {
 
 AppointmentDetails.propTypes = {
     data: PropTypes.arrayOf(PropTypes.string),
-    availableSlots: PropTypes.array
 };
 
 export default AppointmentDetails;
