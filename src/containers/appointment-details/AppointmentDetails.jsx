@@ -9,7 +9,7 @@ class AppointmentDetails extends Component {
         super(props)
 
         this.state = {
-            currentIndex: 0,
+            currentIndex: 0
         }
     }
 

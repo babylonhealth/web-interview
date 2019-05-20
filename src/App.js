@@ -18,8 +18,8 @@ class App extends Component {
     super(props)
 
     this.state = {
-      selectedAppointmentTime: '',
       selectedConsultantType: 'gp',
+      selectedAppointmentTime: '',
       selectedAppointmentType: '',
       notes: '',
       availableSlots: [],
@@ -31,7 +31,11 @@ class App extends Component {
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then(res => res.json())
       .then(availableSlots => {
-        this.setState({ availableSlots })
+        this.setState({
+          availableSlots,
+          selectedAppointmentTime: availableSlots[0].time,
+          selectedAppointmentType: availableSlots[0].appointmentType[0],
+        })
       })
       .catch(error => {
         console.error(error)
@@ -71,7 +75,6 @@ class App extends Component {
     )
 
     const postUserData = () => {
-      // Refactor!
       const userId = Number(this.state.user[0].id)
       const dateTime = this.state.selectedAppointmentTime
       const notes = String(this.state.notes) || null
