@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '../../components/button/Button';
+import { formatToTime } from '../../helpers/validators';
 import './styles.scss';
 
 class AppointmentDetails extends Component {
@@ -20,11 +21,12 @@ class AppointmentDetails extends Component {
 
         return this.props.data.map((consultantAppoint, index) => {
             const style = index === this.state.currentIndex ? "active" : "button";
+            const formattedValue = formatToTime(consultantAppoint);
 
             return (
                 <Button
                     key={consultantAppoint}
-                    text={consultantAppoint}
+                    text={formattedValue}
                     styles={style}
                     onClick={() => {
                         this.props.onClick && this.props.onClick(consultantAppoint);
@@ -38,7 +40,8 @@ class AppointmentDetails extends Component {
 }
 
 AppointmentDetails.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.string)
+    data: PropTypes.arrayOf(PropTypes.string),
+    availableSlots: PropTypes.array
 };
 
 export default AppointmentDetails;

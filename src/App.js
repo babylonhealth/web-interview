@@ -6,7 +6,7 @@ import Medical from 'react-feather/dist/icons/git-branch'
 
 import API_ENDPOINT from './config'
 import { filterByType, removeDuplicates } from './helpers/appointment-filters'
-import converToISOString from './helpers/validators'
+import { converToISOString } from './helpers/validators'
 import Profile from './containers/profile/Profile'
 import AppointmentDetailsRow from './containers/appointment-details/AppointmentDetails'
 import Header from './components/header/Header'
@@ -36,6 +36,7 @@ class App extends Component {
           availableSlots,
           selectedAppointmentTime: availableSlots[0].time,
           selectedAppointmentType: availableSlots[0].appointmentType[0],
+          selectedAppointmentId: availableSlots[0].id,
         })
       })
       .catch(error => {
@@ -51,12 +52,30 @@ class App extends Component {
   }
 
   render() {
-    const setSelectedAppointmentType = type => {
-      this.setState({ selectedAppointmentType: type })
-    }
+    const currentAppointment =
+      this.state.availableSlots.find(val => {
+        return val.time === this.state.selectedAppointmentTime
+      }) || []
 
     const setConsultantType = type => {
       this.setState({ selectedConsultantType: type })
+      this.setState(
+        {
+          selectedConsultantType: type,
+        },
+        () => {
+          const selectedTime = this.state.availableSlots.find(val => {
+            return val.consultantType.includes(
+              this.state.selectedConsultantType
+            )
+          })
+          this.setState({ selectedAppointmentTime: selectedTime.time })
+        }
+      )
+    }
+
+    const setSelectedAppointmentType = type => {
+      this.setState({ selectedAppointmentType: type })
     }
 
     const setAppointmentTime = type => {
@@ -82,7 +101,7 @@ class App extends Component {
     }
 
     const postUserData = () => {
-      const userId = Number(this.state.user[0].id)
+      const userId = Number(currentAppointment.id)
       const notes = String(this.state.notes) || null
       const dateTime = converToISOString(this.state.selectedAppointmentTime)
       const type = `${this.state.selectedConsultantType.toUpperCase()} appointment`
@@ -126,6 +145,7 @@ class App extends Component {
           </div>
           <div className="buttons-row">
             <AppointmentDetailsRow
+              availableSlots={this.state.availableSlots}
               data={uniqueConsultantTypes}
               onClick={setConsultantType}
             />

@@ -1,14 +1,8 @@
-import timeFormatter from './time-formatter'
-
 export function filterByType(appointments, consultantType) {
   const appointment = appointments
     .map(appointment => appointment[consultantType])
     .flatMap(appointment => {
-      if (consultantType === 'time') {
-        return timeFormatter(appointment)
-      } else {
-        return appointment
-      }
+      return appointment
     })
 
   return removeDuplicates(appointment)
