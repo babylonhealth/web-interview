@@ -1,0 +1,26 @@
+@import '../../constants.scss';
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px black solid;
+    padding: 30px 11px 11px;
+}
+
+.logo img {
+    height: 34px;
+}
+
+.nu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: #fff;
+    text-align: center;
+    background: $secondary-dark;
+}

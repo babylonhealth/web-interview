@@ -1,29 +1,57 @@
 @import './constants.scss';
 
-.app-header {
-  padding: $gutter-size--large;
-
-  img {
-    max-height: 33px;
-  }
-
-  border-bottom: $border-standard;
+.app {
+    padding: 0 25px;
 }
 
-.button {
-  box-sizing: border-box;
-  padding: 12px;
-  background-color: $primary-dark;
-  color: $secondary-light;
-  width: calc(25% - 12px);
-  height: 42px;
-  margin-right: 12px;
-  display: inline-block;
-  text-align: center;
+.main-profile {
+    margin: 15px 37px;
+    border-bottom: 1px solid black;
+    padding: 19px 0;
 }
 
-h2 {
-  &.h6 {
-    font-size: 24px;
-  }
+.main {
+    margin: 15px 37px;
+}
+
+.main-top {
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+}
+
+.main-top svg {
+    margin-right: 10px;
+}
+
+.buttons-row {
+    margin: 14px;
+}
+
+.button, .large-button {
+    background: none;
+    border: 1px solid $secondary-light;
+    padding: 0;
+    border-radius: 24px;
+}
+
+.large-button {
+    height: 35px;
+    width: 100%;
+    margin: 20px 0 0;
+    color: white;
+    background: $success;
+    cursor: pointer;
+}
+
+.text-area-row textarea {
+    margin: 0;
+    margin-top: 10px;
+    padding-top: 6px;
+    border: 1px solid $secondary-dark;
+    border-radius: 5px;
+    height: 100px;
+    width: 100%;
+    text-indent: 10px;
+    cursor: pointer;
 }

@@ -1,120 +1,138 @@
 import React, { Component } from 'react'
+import Clock from 'react-feather/dist/icons/clock'
+import Video from 'react-feather/dist/icons/video'
+import Notes from 'react-feather/dist/icons/book-open'
+import Medical from 'react-feather/dist/icons/git-branch'
 
-import logo from './logo.png'
-import { API_ENDPOINT } from './config'
-
+import API_ENDPOINT from './config'
+import { filterByType, removeDuplicates } from './helpers/appointment-filters'
+import Profile from './containers/profile/Profile'
+import AppointmentDetailsRow from './containers/appointment-details/AppointmentDetails'
+import Header from './components/header/Header'
+import SubHeading from './components/sub-heading/SubHeading'
+import Button from '../src/components/button/Button'
 import './App.scss'
-// test commit
+
 class App extends Component {
   constructor(props) {
     super(props)
 
+    this.notesRef = React.createRef()
+    // clean up user []
     this.state = {
-      userId: 1,
       selectedAppointmentType: 'gp',
+      selectedAppointmentTime: '',
+      notes: '',
       availableSlots: [],
+      user: [],
     }
   }
 
   componentDidMount() {
-    document
-      .querySelectorAll('button')
-      .querySelectorAll('[id=GP-button]')
-      .attachEventHandler('click', this.onClick)
-
+    // TODO: Make generic fetch function
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then(res => res.json())
-      .then(json => {
-        this.setState({ availableSlots: json })
+      .then(availableSlots => {
+        this.setState({ availableSlots })
       })
-      .catch(() => {
-        // TODO: Handle error here
+      .catch(error => {
+        console.error(error)
       })
-  }
 
-  onClick() {
-    this.setState({ selectedAppointmentType: 'gp' })
+    fetch(`${API_ENDPOINT}/users`)
+      .then(res => res.json())
+      .then(user => this.setState({ user }))
+      .catch(error => {
+        console.error(error)
+      })
   }
 
   render() {
-    // calculate matching slots
-    let slots = []
-    for (let i = 0; i < this.state.availableSlots.length; i++) {
-      for (
-        let j = 0;
-        j < this.state.availableSlots[i]['consultantType'].length;
-        j++
-      ) {
-        if (
-          this.state.availableSlots[j]['consultantType'][i] ===
-          this.state.selectedAppointmentType
-        ) {
-          slots.push(this.state.availableSlots[j])
-        }
-      }
+    const selectedAppointmentType = type => {
+      this.setState({ selectedAppointmentTime: type })
     }
 
+    const updateAppointmentType = type => {
+      this.setState({ selectedAppointmentType: type })
+    }
+
+    const validAppointments = this.state.availableSlots.filter(
+      availableSlot => {
+        if (
+          availableSlot.consultantType.includes(
+            this.state.selectedAppointmentType
+          )
+        ) {
+          return availableSlot
+        }
+      }
+    )
+
+    const typeConsultant = this.state.availableSlots
+      .map(availableSlot => availableSlot.consultantType)
+      .flatMap(consultantType => consultantType)
+
+    const uniqueConsultantTypes = removeDuplicates(typeConsultant)
+    const availableTimes = filterByType(validAppointments, 'time')
+    const uniqueAppointmentTypes = filterByType(
+      validAppointments,
+      'appointmentType'
+    )
+    // TODO: Stop buttons being highlighted by default unless consultant type
     return (
       <div className="app">
-        <h2 className="h6">New appointment</h2>
-        <div className="app-header">
-          <img src={logo} className="app-logo" alt="Babylon Health" />
+        <Header />
+        <div className="main-profile">
+          <div className="sub-title">
+            <SubHeading subHeading="New appointment" />
+          </div>
+          <Profile user={this.state.user} />
         </div>
-        <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div className="button" id="GP-button">
-            GP
+        <div className="main">
+          <div className="main-top">
+            <Medical />
+            <div>Consultant Type</div>
           </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Therapist' })
-            }}
-          >
-            Therapist
+          <div className="buttons-row">
+            <AppointmentDetailsRow
+              data={uniqueConsultantTypes}
+              onClick={updateAppointmentType}
+            />
           </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Physio' })
-            }}
-          >
-            Physio
+          <div className="main-top">
+            <Clock />
+            <div>Date & Time</div>
           </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'specialist' })
-            }}
-          >
-            Specialist
+          <div className="buttons-row">
+            <AppointmentDetailsRow
+              data={availableTimes}
+              onClick={selectedAppointmentType}
+            />
           </div>
-          <div>
-            <strong>Appointments</strong>
-            {slots.map(slot => (
-              <li
-                className="appointment-button"
-                onClick={() => {
-                  this.setState({ selectedAppointment: slot })
-                }}
-              >
-                {slot.time}
-              </li>
-            ))}
+          <div className="main-top">
+            <Video />
+            <div>Appointment Type</div>
           </div>
-          <div>
-            <strong>Notes</strong>
-            <textarea />
+          <div className="buttons-row">
+            <AppointmentDetailsRow data={uniqueAppointmentTypes} />
           </div>
-          <div>
-            <div
-              className="button"
-              onClick={() => {
-                /* TODO: submit the data */
+          <div className="main-top">
+            <Notes />
+            <div>Notes</div>
+          </div>
+          <div className="text-area-row">
+            <textarea
+              ref="notes"
+              placeholder="Describe your symptoms"
+              value={this.state.notes}
+              onChange={event => {
+                this.setState({
+                  notes: event.target.value,
+                })
               }}
-            >
-              Book appointment
-            </div>
+            />
           </div>
+          <Button text="Book" styles="large-button" />
         </div>
       </div>
     )
