@@ -75,6 +75,12 @@ class App extends Component {
       }
     )
 
+    const updateEvent = event => {
+      this.setState({
+        notes: event.target.value,
+      })
+    }
+
     const postUserData = () => {
       const userId = Number(this.state.user[0].id)
       const notes = String(this.state.notes) || null
@@ -154,9 +160,7 @@ class App extends Component {
               placeholder="Describe your symptoms"
               value={this.state.notes}
               onChange={event => {
-                this.setState({
-                  notes: event.target.value,
-                })
+                updateEvent(event)
               }}
             />
           </div>
