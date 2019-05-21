@@ -24,16 +24,34 @@ class App extends Component {
 
     this.state = {
       userId: 1,
-      selectedAppointmentType: 'video',
+      selectedConsultantType: null,
+      selectedAppointmentType: null,
+      selectedTimeSlot: null,
       availableSlots: [],
     }
 
-    this.handleTypeChange = this.handleTypeChange.bind(this)
+    this.handleConsultantTypeChange = this.handleConsultantTypeChange.bind(this)
+    this.handleAppointmentTypeChange = this.handleAppointmentTypeChange.bind(
+      this
+    )
+    this.handleTimeSlotChange = this.handleTimeSlotChange.bind(this)
   }
 
-  handleTypeChange(e) {
+  handleConsultantTypeChange(e) {
+    this.setState({
+      selectedConsultantType: e.target.value,
+    })
+  }
+
+  handleAppointmentTypeChange(e) {
     this.setState({
       selectedAppointmentType: e.target.value,
+    })
+  }
+
+  handleTimeSlotChange(e) {
+    this.setState({
+      selectedTimeSlot: e.target.value,
     })
   }
 
@@ -45,6 +63,13 @@ class App extends Component {
       ['Therapist', 'therapist'],
       ['Triage Nurse', 'triage_nurse'],
       ['Specialist Nurse', 'specialist_nurse'],
+    ]
+
+    const appointmentTypes = [['Video', 'video'], ['Audio', 'audio']]
+
+    const availableSlots = [
+      ['Today 16:30', '2019-12-01T14:16:30.000Z'],
+      ['19:00', '2019-12-26T17:19:00.000Z'],
     ]
 
     return (
@@ -59,18 +84,31 @@ class App extends Component {
           <LabeledField icon={<StethoscopeIcon />} label="Consultant Type">
             <RadioGroup
               legend="Consultant Type"
+              inputName="consultantType"
               options={consultantTypes}
-              selectedValue={this.state.selectedAppointmentType}
-              onChange={this.handleTypeChange}
+              selectedValue={this.state.selectedConsultantType}
+              onChange={this.handleConsultantTypeChange}
             />
           </LabeledField>
 
           <LabeledField icon={<TimeIcon />} label="Date & Time">
-            <button>Button</button>
+            <RadioGroup
+              legend="Date & Time"
+              inputName="appointmentSlot"
+              options={availableSlots}
+              selectedValue={this.state.selectedTimeSlot}
+              onChange={this.handleTimeSlotChange}
+            />
           </LabeledField>
 
           <LabeledField icon={<CameraIcon />} label="Appointment Type">
-            <button>Button</button>
+            <RadioGroup
+              legend="Appointment Type"
+              inputName="appointmentType"
+              options={appointmentTypes}
+              selectedValue={this.state.selectedAppointmentType}
+              onChange={this.handleAppointmentTypeChange}
+            />
           </LabeledField>
 
           <LabeledField icon={<DocumentIcon />} label="Notes">
