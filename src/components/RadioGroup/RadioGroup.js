@@ -11,27 +11,30 @@ export default function RadioGroup({
   onChange,
 }) {
   return (
-    <fieldset className="radiogroup">
-      <legend className="notVisible">{legend}</legend>
-      <ul>
-        {options.map(([label, value], index) => (
-          <li key={value}>
-            <input
-              className="radio notVisible"
-              type="radio"
-              name={inputName}
-              id={value}
-              value={value}
-              checked={
-                (!selectedValue && index === 0) || selectedValue === value
-              }
-              onChange={onChange}
-            />
-            <label htmlFor={value}>{label}</label>
-          </li>
-        ))}
-      </ul>
-    </fieldset>
+    <div className="radiogroup">
+      <fieldset>
+        <legend className="notVisible">{legend}</legend>
+        <ul>
+          {options.map(([label, value], index) => (
+            <li key={value}>
+              <input
+                tabIndex="0"
+                className="radio notVisible"
+                type="radio"
+                name={inputName}
+                id={value}
+                value={value}
+                checked={
+                  (!selectedValue && index === 0) || selectedValue === value
+                }
+                onChange={onChange}
+              />
+              <label htmlFor={value}>{label}</label>
+            </li>
+          ))}
+        </ul>
+      </fieldset>
+    </div>
   )
 }
 

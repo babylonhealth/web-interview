@@ -1,9 +1,14 @@
 @import '../../constants.scss';
 
 .radiogroup {
-  border: none;
-  margin: 0;
-  padding: 0;
+  overflow: scroll;
+  padding-bottom: 18px;
+
+  fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
 
   legend {
     border: none;
