@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-// import { API_ENDPOINT } from './config'
+import {
+  getUsers,
+  getAvailableSlots,
+  selectConsultantType,
+  selectTimeSlot,
+  selectAppointmentType,
+  setAppointmentNotes,
+} from './actions/newAppointment'
 
 import './App.scss'
 
@@ -22,48 +31,51 @@ class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      userId: 1,
-      selectedConsultantType: null,
-      selectedAppointmentType: null,
-      selectedTimeSlot: null,
-      availableSlots: [],
-    }
-
     this.handleConsultantTypeChange = this.handleConsultantTypeChange.bind(this)
     this.handleAppointmentTypeChange = this.handleAppointmentTypeChange.bind(
       this
     )
     this.handleTimeSlotChange = this.handleTimeSlotChange.bind(this)
+    this.handleNotesChange = this.handleNotesChange.bind(this)
+  }
+
+  componentDidMount() {
+    const { getUsers, getAvailableSlots } = this.props
+    getUsers()
+    getAvailableSlots()
   }
 
   handleConsultantTypeChange(e) {
-    this.setState({
-      selectedConsultantType: e.target.value,
-    })
+    this.props.selectConsultantType(e.target.value)
   }
 
   handleAppointmentTypeChange(e) {
-    this.setState({
-      selectedAppointmentType: e.target.value,
-    })
+    this.props.selectAppointmentType(e.target.value)
   }
 
   handleTimeSlotChange(e) {
     this.setState({
-      selectedTimeSlot: e.target.value,
+      timeSlot: e.target.value,
     })
   }
 
+  handleNotesChange(e) {
+    this.props.setAppointmentNotes(e.target.value)
+  }
+
+  parseAvailableSlots(slots) {
+    return slots
+  }
+
   render() {
-    const consultantTypes = [
-      ['GP', 'gp'],
-      ['Specialist', 'specialist'],
-      ['Nurse', 'nurse'],
-      ['Therapist', 'therapist'],
-      ['Triage Nurse', 'triage_nurse'],
-      ['Specialist Nurse', 'specialist_nurse'],
-    ]
+    const {
+      selectedUser,
+      consultantTypes,
+      selectedConsultantType,
+      selectedTimeSlot,
+      selectedAppointmentType,
+      appointmentNotes,
+    } = this.props
 
     const appointmentTypes = [['Video', 'video'], ['Audio', 'audio']]
 
@@ -77,7 +89,7 @@ class App extends Component {
         <AppHeader />
         <main>
           <header>New Appointment</header>
-          <UserHeader name="Jane Doe" />
+          {selectedUser && <UserHeader name={selectedUser.firstName} />}
 
           <Separator />
 
@@ -86,7 +98,7 @@ class App extends Component {
               legend="Consultant Type"
               inputName="consultantType"
               options={consultantTypes}
-              selectedValue={this.state.selectedConsultantType}
+              selectedValue={selectedConsultantType}
               onChange={this.handleConsultantTypeChange}
             />
           </LabeledField>
@@ -96,7 +108,7 @@ class App extends Component {
               legend="Date & Time"
               inputName="appointmentSlot"
               options={availableSlots}
-              selectedValue={this.state.selectedTimeSlot}
+              selectedValue={selectedTimeSlot}
               onChange={this.handleTimeSlotChange}
             />
           </LabeledField>
@@ -106,13 +118,16 @@ class App extends Component {
               legend="Appointment Type"
               inputName="appointmentType"
               options={appointmentTypes}
-              selectedValue={this.state.selectedAppointmentType}
+              selectedValue={selectedAppointmentType}
               onChange={this.handleAppointmentTypeChange}
             />
           </LabeledField>
 
           <LabeledField icon={<DocumentIcon />} label="Notes">
-            <TextArea />
+            <TextArea
+              value={appointmentNotes}
+              onChange={this.handleNotesChange}
+            />
           </LabeledField>
 
           <LabeledField icon={<PhotoIcon />} label="Attach a photo">
@@ -128,4 +143,62 @@ class App extends Component {
   }
 }
 
-export default App
+App.propTypes = {
+  usersLoading: PropTypes.bool,
+  selectedUser: PropTypes.shape({
+    id: PropTypes.number,
+    firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    avatar: PropTypes.string,
+  }),
+  consultantTypes: PropTypes.array,
+  availableSlots: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      consultantType: PropTypes.arrayOf(PropTypes.string),
+      appointmentType: PropTypes.arrayOf(PropTypes.string),
+      time: PropTypes.string,
+    })
+  ),
+  availableSlotsLoading: PropTypes.bool,
+  selectedConsultantType: PropTypes.string,
+  selectedTimeSlot: PropTypes.string,
+  selectedAppointmentType: PropTypes.string,
+  appointmentNotes: PropTypes.string,
+
+  getUsers: PropTypes.func,
+  getAvailableSlots: PropTypes.func,
+  selectConsultantType: PropTypes.func,
+  selectTimeSlot: PropTypes.func,
+  selectAppointmentType: PropTypes.func,
+  setAppointmentNotes: PropTypes.func,
+}
+
+const mapStateToProps = state => ({
+  usersLoading: state.newAppointment.usersLoading,
+  selectedUser: state.newAppointment.selectedUser,
+  consultantTypes: state.newAppointment.consultantTypes,
+  availableSlots: state.newAppointment.availableSlots,
+  availableSlotsLoading: state.newAppointment.availableSlotsLoading,
+  selectedConsultantType: state.newAppointment.selectedConsultantType,
+  selectedTimeSlot: state.newAppointment.selectedTimeSlot,
+  selectedAppointmentType: state.newAppointment.selectedAppointmentType,
+  appointmentNotes: state.newAppointment.appointmentNotes,
+})
+
+const mapDispatchToProps = dispatch => ({
+  getUsers: () => dispatch(getUsers()),
+  getAvailableSlots: () => dispatch(getAvailableSlots()),
+  selectConsultantType: consultantType =>
+    dispatch(selectConsultantType(consultantType)),
+  selectTimeSlot: timeSlot => dispatch(selectTimeSlot(timeSlot)),
+  selectAppointmentType: appointmentType =>
+    dispatch(selectAppointmentType(appointmentType)),
+  setAppointmentNotes: appointmentNotes =>
+    dispatch(setAppointmentNotes(appointmentNotes)),
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
