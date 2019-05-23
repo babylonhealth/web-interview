@@ -71,6 +71,9 @@ export const postAppointment = appointment => {
     dispatch({ type: POST_APPOINTMENT })
     return fetch(`${API_ENDPOINT}/appointments`, {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(appointment),
     })
       .then(response => response.json())

@@ -82,8 +82,8 @@ class App extends Component {
     postAppointment({
       userId: selectedUser.id,
       dateTime: selectedTimeSlot.time,
-      type: selectedConsultantType,
       notes: appointmentNotes,
+      type: selectedConsultantType,
     })
   }
 
