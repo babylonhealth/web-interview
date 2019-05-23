@@ -17,9 +17,9 @@ const defaultState = {
   selectedUser: null,
   availableSlots: [],
   availableSlotsLoading: true,
-  selectedConsultantType: 'gp',
+  selectedConsultantType: null,
   selectedTimeSlot: null,
-  selectedAppointmentType: 'video',
+  selectedAppointmentType: null,
   appointmentNotes: '',
   postingAppointment: false,
 }
@@ -51,7 +51,11 @@ const newAppointment = (state = defaultState, action) => {
         ...state,
         availableSlots: action.data,
         availableSlotsLoading: false,
+        selectedConsultantType:
+          action.data.length > 0 && action.data[0].consultantType[0],
         selectedTimeSlot: action.data.length > 0 && action.data[0],
+        selectedAppointmentType:
+          action.data.length > 0 && action.data[0].appointmentType[0],
       }
 
     case SELECT_CONSULTANT_TYPE:

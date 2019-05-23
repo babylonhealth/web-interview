@@ -52,6 +52,8 @@ class App extends Component {
 
   handleConsultantTypeChange(e) {
     this.props.selectConsultantType(e.target.value)
+    this.props.selectTimeSlot(null)
+    this.props.selectAppointmentType(null)
   }
 
   handleAppointmentTypeChange(e) {
@@ -126,9 +128,10 @@ class App extends Component {
         }
       })
     })
-    return appointmentTypes
-      .reverse()
-      .map(type => [type.charAt(0).toUpperCase() + type.slice(1), type])
+    return appointmentTypes.map(type => [
+      type.charAt(0).toUpperCase() + type.slice(1),
+      type,
+    ])
   }
 
   render() {
@@ -180,7 +183,7 @@ class App extends Component {
                 legend="Date & Time"
                 inputName="appointmentSlot"
                 options={timeSlots}
-                selectedValue={`${selectedTimeSlot.id}`}
+                selectedValue={selectedTimeSlot ? `${selectedTimeSlot.id}` : ''}
                 onChange={this.handleTimeSlotChange}
               />
             )}

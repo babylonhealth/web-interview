@@ -24,9 +24,7 @@ export default function RadioGroup({
                 name={inputName}
                 id={value}
                 value={value}
-                checked={
-                  (!selectedValue && index === 0) || selectedValue === value
-                }
+                checked={selectedValue === value}
                 onChange={onChange}
               />
               <label htmlFor={value}>{label}</label>
