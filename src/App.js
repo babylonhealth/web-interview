@@ -12,6 +12,7 @@ import {
   selectTimeSlot,
   selectAppointmentType,
   setAppointmentNotes,
+  postAppointment,
 } from './actions/newAppointment'
 
 import './App.scss'
@@ -40,6 +41,7 @@ class App extends Component {
     )
     this.handleTimeSlotChange = this.handleTimeSlotChange.bind(this)
     this.handleNotesChange = this.handleNotesChange.bind(this)
+    this.handleBookAppointment = this.handleBookAppointment.bind(this)
   }
 
   componentDidMount() {
@@ -62,6 +64,23 @@ class App extends Component {
 
   handleNotesChange(e) {
     this.props.setAppointmentNotes(e.target.value)
+  }
+
+  handleBookAppointment(e) {
+    const {
+      postAppointment,
+      selectedUser,
+      selectedConsultantType,
+      selectedTimeSlot,
+      appointmentNotes,
+    } = this.props
+
+    postAppointment({
+      userId: selectedUser.id,
+      dateTime: selectedTimeSlot,
+      type: selectedConsultantType,
+      notes: appointmentNotes,
+    })
   }
 
   parseAvailableSlots(slots = []) {
@@ -154,7 +173,9 @@ class App extends Component {
 
           <Separator />
 
-          <Button fullwidth>Book</Button>
+          <Button fullwidth onClick={this.handleBookAppointment}>
+            Book
+          </Button>
         </main>
       </div>
     )
@@ -190,6 +211,7 @@ App.propTypes = {
   selectTimeSlot: PropTypes.func,
   selectAppointmentType: PropTypes.func,
   setAppointmentNotes: PropTypes.func,
+  postAppointment: PropTypes.func,
 }
 
 const mapStateToProps = state => ({
@@ -214,6 +236,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch(selectAppointmentType(appointmentType)),
   setAppointmentNotes: appointmentNotes =>
     dispatch(setAppointmentNotes(appointmentNotes)),
+  postAppointment: appointment => dispatch(postAppointment(appointment)),
 })
 
 export default connect(

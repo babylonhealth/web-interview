@@ -63,3 +63,24 @@ export const setAppointmentNotes = appointmentNotes => ({
   type: SET_APPOINTMENT_NOTES,
   appointmentNotes,
 })
+
+export const POST_APPOINTMENT = 'POST_APPOINTMENT'
+
+export const postAppointment = appointment => {
+  return dispatch => {
+    dispatch({ type: POST_APPOINTMENT })
+    return fetch(`${API_ENDPOINT}/appointments`, {
+      method: 'POST',
+      body: JSON.stringify(appointment),
+    })
+      .then(response => response.json())
+      .then(json => dispatch(postAppointmentSuccess(json)))
+  }
+}
+
+export const POST_APPOINTMENT_SUCCESS = 'POST_APPOINTMENT_SUCCESS'
+
+export const postAppointmentSuccess = data => ({
+  type: POST_APPOINTMENT_SUCCESS,
+  data,
+})

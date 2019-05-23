@@ -7,6 +7,8 @@ import {
   SELECT_TIME_SLOT,
   SELECT_APPOINTMENT_TYPE,
   SET_APPOINTMENT_NOTES,
+  POST_APPOINTMENT,
+  POST_APPOINTMENT_SUCCESS,
 } from '../../actions/newAppointment'
 
 const defaultState = {
@@ -27,6 +29,7 @@ const defaultState = {
   selectedTimeSlot: null,
   selectedAppointmentType: 'video',
   appointmentNotes: '',
+  postingAppointment: false,
 }
 
 const newAppointment = (state = defaultState, action) => {
@@ -80,6 +83,18 @@ const newAppointment = (state = defaultState, action) => {
       return {
         ...state,
         appointmentNotes: action.appointmentNotes,
+      }
+
+    case POST_APPOINTMENT:
+      return {
+        ...state,
+        postingAppointment: true,
+      }
+
+    case POST_APPOINTMENT_SUCCESS:
+      return {
+        ...state,
+        postingAppointment: false,
       }
 
     default:
