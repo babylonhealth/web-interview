@@ -11,7 +11,7 @@ import {
 
 const defaultState = {
   users: [],
-  usersLoading: false,
+  usersLoading: true,
   selectedUser: null,
   consultantTypes: [
     ['GP', 'gp'],
@@ -22,7 +22,7 @@ const defaultState = {
     ['Specialist Nurse', 'specialist_nurse'],
   ],
   availableSlots: [],
-  availableSlotsLoading: false,
+  availableSlotsLoading: true,
   selectedConsultantType: 'gp',
   selectedTimeSlot: null,
   selectedAppointmentType: 'video',

@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import { formatRelative } from 'date-fns'
+import { enGB } from 'date-fns/locale'
+
 import {
   getUsers,
   getAvailableSlots,
@@ -54,22 +57,32 @@ class App extends Component {
   }
 
   handleTimeSlotChange(e) {
-    this.setState({
-      timeSlot: e.target.value,
-    })
+    this.props.selectTimeSlot(e.target.value)
   }
 
   handleNotesChange(e) {
     this.props.setAppointmentNotes(e.target.value)
   }
 
-  parseAvailableSlots(slots) {
+  parseAvailableSlots(slots = []) {
     return slots
+      .filter(slot =>
+        slot.consultantType.includes(this.props.selectedConsultantType)
+      )
+      .map(slot => {
+        const dateFmt = formatRelative(new Date(slot.time), new Date(), {
+          locale: enGB,
+        })
+        return [dateFmt.charAt(0).toUpperCase() + dateFmt.slice(1), slot.time]
+      })
   }
 
   render() {
     const {
+      usersLoading,
       selectedUser,
+      availableSlotsLoading,
+      availableSlots,
       consultantTypes,
       selectedConsultantType,
       selectedTimeSlot,
@@ -79,17 +92,20 @@ class App extends Component {
 
     const appointmentTypes = [['Video', 'video'], ['Audio', 'audio']]
 
-    const availableSlots = [
-      ['Today 16:30', '2019-12-01T14:16:30.000Z'],
-      ['19:00', '2019-12-26T17:19:00.000Z'],
-    ]
+    const filteredSlots = this.parseAvailableSlots(availableSlots)
 
     return (
       <div className="app">
         <AppHeader />
         <main>
           <header>New Appointment</header>
-          {selectedUser && <UserHeader name={selectedUser.firstName} />}
+          {usersLoading && <div>LOADING...</div>}
+          {!usersLoading && (
+            <UserHeader
+              name={`${selectedUser.firstName} ${selectedUser.lastName}`}
+              imgSrc={selectedUser.avatar}
+            />
+          )}
 
           <Separator />
 
@@ -104,13 +120,15 @@ class App extends Component {
           </LabeledField>
 
           <LabeledField icon={<TimeIcon />} label="Date & Time">
-            <RadioGroup
-              legend="Date & Time"
-              inputName="appointmentSlot"
-              options={availableSlots}
-              selectedValue={selectedTimeSlot}
-              onChange={this.handleTimeSlotChange}
-            />
+            {!availableSlotsLoading && (
+              <RadioGroup
+                legend="Date & Time"
+                inputName="appointmentSlot"
+                options={filteredSlots}
+                selectedValue={selectedTimeSlot}
+                onChange={this.handleTimeSlotChange}
+              />
+            )}
           </LabeledField>
 
           <LabeledField icon={<CameraIcon />} label="Appointment Type">
