@@ -87,7 +87,22 @@ class App extends Component {
     })
   }
 
-  parseAvailableSlots(slots = []) {
+  parseConsultantType(slots = []) {
+    const consultantTypes = []
+    slots.forEach(slot => {
+      slot.consultantType.forEach(type => {
+        if (!consultantTypes.includes(type)) {
+          consultantTypes.push(type)
+        }
+      })
+    })
+    return consultantTypes.map(type => [
+      type.charAt(0).toUpperCase() + type.slice(1),
+      type,
+    ])
+  }
+
+  parseTimeSlots(slots = []) {
     return slots
       .filter(slot =>
         slot.consultantType.includes(this.props.selectedConsultantType)
@@ -109,16 +124,18 @@ class App extends Component {
       selectedUser,
       availableSlotsLoading,
       availableSlots,
-      consultantTypes,
       selectedConsultantType,
       selectedTimeSlot,
       selectedAppointmentType,
       appointmentNotes,
     } = this.props
 
+    const consultantTypes = this.parseConsultantType(availableSlots)
+    console.log('consultantTypes', consultantTypes)
+
     const appointmentTypes = [['Video', 'video'], ['Audio', 'audio']]
 
-    const filteredSlots = this.parseAvailableSlots(availableSlots)
+    const timeSlots = this.parseTimeSlots(availableSlots)
 
     return (
       <div className="app">
@@ -150,7 +167,7 @@ class App extends Component {
               <RadioGroup
                 legend="Date & Time"
                 inputName="appointmentSlot"
-                options={filteredSlots}
+                options={timeSlots}
                 selectedValue={`${selectedTimeSlot.id}`}
                 onChange={this.handleTimeSlotChange}
               />
@@ -204,7 +221,6 @@ App.propTypes = {
     lastName: PropTypes.string,
     avatar: PropTypes.string,
   }),
-  consultantTypes: PropTypes.array,
   availableSlots: PropTypes.arrayOf(timeSlotType),
   availableSlotsLoading: PropTypes.bool,
   selectedConsultantType: PropTypes.string,
@@ -224,7 +240,6 @@ App.propTypes = {
 const mapStateToProps = state => ({
   usersLoading: state.newAppointment.usersLoading,
   selectedUser: state.newAppointment.selectedUser,
-  consultantTypes: state.newAppointment.consultantTypes,
   availableSlots: state.newAppointment.availableSlots,
   availableSlotsLoading: state.newAppointment.availableSlotsLoading,
   selectedConsultantType: state.newAppointment.selectedConsultantType,
