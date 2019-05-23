@@ -4,7 +4,13 @@ import classNames from 'classnames'
 
 import './Button.scss'
 
-export default function Button({ children, onClick, fullwidth, invert }) {
+export default function Button({
+  children,
+  onClick,
+  fullwidth,
+  invert,
+  disabled,
+}) {
   return (
     <button
       className={classNames('button', {
@@ -12,6 +18,7 @@ export default function Button({ children, onClick, fullwidth, invert }) {
         invert,
       })}
       onClick={onClick}
+      disabled={disabled}
     >
       {children}
     </button>
@@ -23,4 +30,5 @@ Button.propTypes = {
   onClick: PropTypes.func,
   fullwidth: PropTypes.bool,
   invert: PropTypes.bool,
+  disabled: PropTypes.bool,
 }

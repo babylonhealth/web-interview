@@ -30,6 +30,7 @@ import PhotoIcon from './components/Icons/PhotoIcon'
 import Button from './components/Button/Button'
 import TextArea from './components/TextArea/TextArea'
 import RadioGroup from './components/RadioGroup/RadioGroup'
+import Loading from './components/Loading/Loading'
 
 class App extends Component {
   constructor(props) {
@@ -157,7 +158,7 @@ class App extends Component {
         <AppHeader />
         <main>
           <header>New Appointment</header>
-          {usersLoading && <div>LOADING...</div>}
+          {usersLoading && <Loading />}
           {!usersLoading && (
             <UserHeader
               name={`${selectedUser.firstName} ${selectedUser.lastName}`}
@@ -168,16 +169,20 @@ class App extends Component {
           <Separator />
 
           <LabeledField icon={<StethoscopeIcon />} label="Consultant Type">
-            <RadioGroup
-              legend="Consultant Type"
-              inputName="consultantType"
-              options={consultantTypes}
-              selectedValue={selectedConsultantType}
-              onChange={this.handleConsultantTypeChange}
-            />
+            {availableSlotsLoading && <Loading />}
+            {!availableSlotsLoading && (
+              <RadioGroup
+                legend="Consultant Type"
+                inputName="consultantType"
+                options={consultantTypes}
+                selectedValue={selectedConsultantType}
+                onChange={this.handleConsultantTypeChange}
+              />
+            )}
           </LabeledField>
 
           <LabeledField icon={<TimeIcon />} label="Date & Time">
+            {availableSlotsLoading && <Loading />}
             {!availableSlotsLoading && (
               <RadioGroup
                 legend="Date & Time"
@@ -190,13 +195,16 @@ class App extends Component {
           </LabeledField>
 
           <LabeledField icon={<CameraIcon />} label="Appointment Type">
-            <RadioGroup
-              legend="Appointment Type"
-              inputName="appointmentType"
-              options={appointmentTypes}
-              selectedValue={selectedAppointmentType}
-              onChange={this.handleAppointmentTypeChange}
-            />
+            {availableSlotsLoading && <Loading />}
+            {!availableSlotsLoading && (
+              <RadioGroup
+                legend="Appointment Type"
+                inputName="appointmentType"
+                options={appointmentTypes}
+                selectedValue={selectedAppointmentType}
+                onChange={this.handleAppointmentTypeChange}
+              />
+            )}
           </LabeledField>
 
           <LabeledField icon={<DocumentIcon />} label="Notes">
@@ -212,7 +220,15 @@ class App extends Component {
 
           <Separator />
 
-          <Button fullwidth onClick={this.handleBookAppointment}>
+          <Button
+            disabled={
+              !selectedConsultantType ||
+              !selectedTimeSlot ||
+              !selectedAppointmentType
+            }
+            fullwidth
+            onClick={this.handleBookAppointment}
+          >
             Book
           </Button>
         </main>
