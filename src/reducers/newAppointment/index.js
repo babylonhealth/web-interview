@@ -59,6 +59,7 @@ const newAppointment = (state = defaultState, action) => {
         ...state,
         availableSlots: action.data,
         availableSlotsLoading: false,
+        selectedTimeSlot: action.data.length > 0 && action.data[0],
       }
 
     case SELECT_CONSULTANT_TYPE:

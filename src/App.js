@@ -59,7 +59,11 @@ class App extends Component {
   }
 
   handleTimeSlotChange(e) {
-    this.props.selectTimeSlot(e.target.value)
+    const selected = this.props.availableSlots.find(
+      slot => slot.id.toString() === e.target.value
+    )
+    debugger
+    this.props.selectTimeSlot(selected)
   }
 
   handleNotesChange(e) {
@@ -77,7 +81,7 @@ class App extends Component {
 
     postAppointment({
       userId: selectedUser.id,
-      dateTime: selectedTimeSlot,
+      dateTime: selectedTimeSlot.time,
       type: selectedConsultantType,
       notes: appointmentNotes,
     })
@@ -92,7 +96,10 @@ class App extends Component {
         const dateFmt = formatRelative(new Date(slot.time), new Date(), {
           locale: enGB,
         })
-        return [dateFmt.charAt(0).toUpperCase() + dateFmt.slice(1), slot.time]
+        return [
+          dateFmt.charAt(0).toUpperCase() + dateFmt.slice(1),
+          slot.id.toString(),
+        ]
       })
   }
 
@@ -144,7 +151,7 @@ class App extends Component {
                 legend="Date & Time"
                 inputName="appointmentSlot"
                 options={filteredSlots}
-                selectedValue={selectedTimeSlot}
+                selectedValue={`${selectedTimeSlot.id}`}
                 onChange={this.handleTimeSlotChange}
               />
             )}
@@ -182,6 +189,13 @@ class App extends Component {
   }
 }
 
+const timeSlotType = PropTypes.shape({
+  id: PropTypes.number,
+  consultantType: PropTypes.arrayOf(PropTypes.string),
+  appointmentType: PropTypes.arrayOf(PropTypes.string),
+  time: PropTypes.string,
+})
+
 App.propTypes = {
   usersLoading: PropTypes.bool,
   selectedUser: PropTypes.shape({
@@ -191,17 +205,10 @@ App.propTypes = {
     avatar: PropTypes.string,
   }),
   consultantTypes: PropTypes.array,
-  availableSlots: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number,
-      consultantType: PropTypes.arrayOf(PropTypes.string),
-      appointmentType: PropTypes.arrayOf(PropTypes.string),
-      time: PropTypes.string,
-    })
-  ),
+  availableSlots: PropTypes.arrayOf(timeSlotType),
   availableSlotsLoading: PropTypes.bool,
   selectedConsultantType: PropTypes.string,
-  selectedTimeSlot: PropTypes.string,
+  selectedTimeSlot: timeSlotType,
   selectedAppointmentType: PropTypes.string,
   appointmentNotes: PropTypes.string,
 
