@@ -62,7 +62,6 @@ class App extends Component {
     const selected = this.props.availableSlots.find(
       slot => slot.id.toString() === e.target.value
     )
-    debugger
     this.props.selectTimeSlot(selected)
   }
 
@@ -118,6 +117,20 @@ class App extends Component {
       })
   }
 
+  parseAppointmentTypes(slots = []) {
+    const appointmentTypes = []
+    slots.forEach(slot => {
+      slot.appointmentType.forEach(type => {
+        if (!appointmentTypes.includes(type)) {
+          appointmentTypes.push(type)
+        }
+      })
+    })
+    return appointmentTypes
+      .reverse()
+      .map(type => [type.charAt(0).toUpperCase() + type.slice(1), type])
+  }
+
   render() {
     const {
       usersLoading,
@@ -131,11 +144,10 @@ class App extends Component {
     } = this.props
 
     const consultantTypes = this.parseConsultantType(availableSlots)
-    console.log('consultantTypes', consultantTypes)
-
-    const appointmentTypes = [['Video', 'video'], ['Audio', 'audio']]
 
     const timeSlots = this.parseTimeSlots(availableSlots)
+
+    const appointmentTypes = this.parseAppointmentTypes(availableSlots)
 
     return (
       <div className="app">
