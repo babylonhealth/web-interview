@@ -32,7 +32,7 @@ import TextArea from './components/TextArea/TextArea'
 import RadioGroup from './components/RadioGroup/RadioGroup'
 import Loading from './components/Loading/Loading'
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props)
 
