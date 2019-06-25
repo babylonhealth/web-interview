@@ -4,6 +4,10 @@ Thanks for taking the time to complete our frontend coding test! You can start w
 
 Good luck!
 
+## Mandatory Requirements ⚠️
+
+- You must provide notes on your implementation using the [template provided here](./notes.md).
+
 ## What we are looking for
 
 We'd like you to build an application that:
@@ -14,8 +18,6 @@ We'd like you to build an application that:
 - looks like the designs provided (it doesn't have to be "pixel perfect")
 - mobile first and responsive
 - clean and understandable Git history
-
-It's helpful for us if you include some notes to explain the decisions you make.
 
 # Instructions
 
