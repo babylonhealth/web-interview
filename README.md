@@ -23,9 +23,9 @@ We'd like you to build an application that:
 
 We'd like you to use React. We have provided a skeleton for the React application and included [SASS](http://sass-lang.com/) for styling. We have also provided some useful constants in [constants.scss](./src/constants.scss). Feel free to add any additional libraries which you think are needed for the task.
 
-We included some initial code in App.js that we would like you to refactor.
+We included some initial code in App.js that we would like you to refactor
 
-We have also included a mock API which is documented below.
+We have also included a mock API which is documented below and the icons from the design in [./src/icons](./src/icons)
 
 We'd like you to build one page. We've provided the design. On this page the user can:
 
