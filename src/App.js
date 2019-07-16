@@ -37,22 +37,12 @@ class App extends Component {
   }
 
   render() {
-    // calculate matching slots
-    let slots = []
-    for (let i = 0; i < this.state.availableSlots.length; i++) {
-      for (
-        let j = 0;
-        j < this.state.availableSlots[i]['consultantType'].length;
-        j++
-      ) {
-        if (
-          this.state.availableSlots[j]['consultantType'][i] ===
-          this.state.selectedAppointmentType
-        ) {
-          slots.push(this.state.availableSlots[j])
-        }
-      }
-    }
+    const slots = [];
+    this.state.availableSlots.forEach({ consultantType } => {
+      consultantType.forEach(type => {
+        if (type === this.state.selectedAppointmentType) slots.push(consultantType);
+      });
+    });
 
     return (
       <div className="app">
