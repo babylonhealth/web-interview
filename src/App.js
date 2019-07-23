@@ -12,48 +12,59 @@ class App extends Component {
     this.state = {
       userId: 1,
       selectedAppointmentType: 'gp',
+      selectedConsultantType: null,
       availableSlots: [],
+      availableSlotsByConsultantType: [],
     }
   }
 
-  componentDidMount() {
-    document
-      .querySelectorAll('button')
-      .querySelectorAll('[id=GP-button]')
-      .attachEventHandler('click', this.onClick)
-
-    fetch(`${API_ENDPOINT}/availableSlots`)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({ availableSlots: json })
-      })
-      .catch(() => {
-        // TODO: Handle error here
-      })
+  async componentDidMount() {
+    try {
+      const fetchData = await fetch(`${API_ENDPOINT}/availableSlots`)
+      const data = await fetchData.json()
+      this.setState({ availableSlots: data })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  onClick() {
-    this.setState({ selectedAppointmentType: 'gp' })
+  handleClick = btnValue => {
+    const filteredData = this.state.availableSlots.filter(item =>
+      item.consultantType.includes(btnValue)
+    )
+    this.setState({
+      availableSlotsByConsultantType: filteredData,
+      selectedConsultantType: btnValue,
+    })
   }
 
   render() {
     // calculate matching slots
-    let slots = []
-    for (let i = 0; i < this.state.availableSlots.length; i++) {
-      for (
-        let j = 0;
-        j < this.state.availableSlots[i]['consultantType'].length;
-        j++
-      ) {
-        if (
-          this.state.availableSlots[j]['consultantType'][i] ===
-          this.state.selectedAppointmentType
-        ) {
-          slots.push(this.state.availableSlots[j])
-        }
-      }
-    }
+    const {
+      availableSlots,
+      availableSlotsByConsultantType,
+      selectedConsultantType,
+    } = this.state
 
+    let slots =
+      selectedConsultantType !== null
+        ? availableSlotsByConsultantType
+        : availableSlots
+    // for (let i = 0; i < this.state.availableSlots.length; i++) {
+    //   for (
+    //     let j = 0;
+    //     j < this.state.availableSlots[i]['consultantType'].length;
+    //     j++
+    //   ) {
+    //     if (
+    //       this.state.availableSlots[j]['consultantType'][i] ===
+    //       this.state.selectedAppointmentType
+    //     ) {
+    //       slots.push(this.state.availableSlots[j])
+    //     }
+    //   }
+    // }
+    console.log(slots)
     return (
       <div className="app">
         <h2 className="h6">New appointment</h2>
@@ -61,31 +72,20 @@ class App extends Component {
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div className="button" id="GP-button">
+          <div
+            className="button"
+            id="GP-button"
+            onClick={e => this.handleClick('gp')}
+          >
             GP
           </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Therapist' })
-            }}
-          >
+          <div className="button" onClick={e => this.handleClick('therapist')}>
             Therapist
           </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'Physio' })
-            }}
-          >
+          <div className="button" onClick={e => this.handleClick('physio')}>
             Physio
           </div>
-          <div
-            className="button"
-            onClick={e => {
-              this.setState({ selectedAppointmentType: 'specialist' })
-            }}
-          >
+          <div className="button" onClick={e => this.handleClick('specialist')}>
             Specialist
           </div>
           <div>
@@ -93,6 +93,7 @@ class App extends Component {
             {slots.map(slot => (
               <li
                 className="appointment-button"
+                key={availableSlots.id}
                 onClick={() => {
                   this.setState({ selectedAppointment: slot })
                 }}
