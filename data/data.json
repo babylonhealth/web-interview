@@ -11,44 +11,81 @@
   "availableSlots": [
     {
       "id": 1,
-      "consultantType": ["gp"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "gp"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-11-27T10:11:00.000Z"
     },
     {
       "id": 2,
-      "consultantType": ["specialist", "gp"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "specialist",
+        "gp"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-12-01T14:16:30.000Z"
     },
     {
       "id": 3,
-      "consultantType": ["gp"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "gp"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-10-08T16:17:30.000Z"
     },
     {
       "id": 4,
-      "consultantType": ["therapist", "gp"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "therapist",
+        "gp"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-11-16T16:18:30.000Z"
     },
     {
       "id": 5,
-      "consultantType": ["specialist"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "specialist"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-12-26T17:19:00.000Z"
     },
     {
       "id": 6,
-      "consultantType": ["gp"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "gp"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-09-23T18:20:00.000Z"
     },
     {
       "id": 7,
-      "consultantType": ["gp"],
-      "appointmentType": ["audio", "video"],
+      "consultantType": [
+        "gp"
+      ],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "time": "2019-08-30T19:21:30.000Z"
     }
   ],
@@ -58,8 +95,23 @@
       "notes": "I have a headache.",
       "userId": 1,
       "consultantType": "GP appointment",
-      "appointmentType": ["audio", "video"],
+      "appointmentType": [
+        "audio",
+        "video"
+      ],
       "dateTime": "2019-08-30T20:21:30.000Z"
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
     }
   ]
 }

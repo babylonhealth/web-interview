@@ -2,12 +2,20 @@
 
 .app-header {
   padding: $gutter-size--large;
-
+  display: flex;
+  justify-content: flex-end;
   img {
     max-height: 33px;
   }
 
   border-bottom: $border-standard;
+}
+.note {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 100px;
 }
 
 .button {
@@ -15,7 +23,7 @@
   padding: 12px;
   background-color: $primary-dark;
   color: $secondary-light;
-  width: calc(25% - 12px);
+  width: 100%;
   height: 42px;
   margin-right: 12px;
   display: inline-block;
@@ -26,4 +34,27 @@ h2 {
   &.h6 {
     font-size: 24px;
   }
+}
+
+.appointment-button {
+  color: $secondary-light;
+  margin: 12px;
+  text-align: center;
+  height: 50px;
+  background-color: $primary-dark;
+  padding: 12px;
+  box-sizing: border-box;
+  width: 150px;
+  border: solid 1px $primary-dark;
+}
+
+.appointment-button1 {
+  color: black;
+  margin: 12px;
+  text-align: center;
+  height: 50px;
+  padding: 12px;
+  box-sizing: border-box;
+  width: 150px;
+  border: solid 1px $primary-dark;
 }

@@ -1,20 +1,26 @@
 import React, { Component } from 'react'
 
+import Buttons from './Components/Buttons'
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
 
 import './App.scss'
 
+const consultant = ['gp', 'therapist', 'physio', 'specialist']
+const appTypeMedium = ['audio', 'video']
 class App extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
       userId: 1,
-      selectedAppointmentType: 'gp',
+      selectedAppointmentType: 'audio',
       selectedConsultantType: null,
       availableSlots: [],
       availableSlotsByConsultantType: [],
+      selectedDate: '',
+      selectedMedium: '',
+      symptoms: '',
     }
   }
 
@@ -38,8 +44,35 @@ class App extends Component {
     })
   }
 
+  handleAppointmentClick = date => {
+    this.setState({
+      selectedDate: date,
+    })
+  }
+
+  handleAppMedium = item => {
+    this.setState({
+      selectedMedium: item,
+    })
+  }
+
+  handleChange = e => {
+    this.setState({
+      symptoms: e.target.value,
+    })
+  }
+
+  handleSubmit = e => {
+    const data = new FormData(e.target.value)
+    fetch('http://localhost:3010/appointments', {
+      method: 'POST',
+      body: data,
+    })
+  }
+
   render() {
     // calculate matching slots
+
     const {
       availableSlots,
       availableSlotsByConsultantType,
@@ -64,55 +97,58 @@ class App extends Component {
     //     }
     //   }
     // }
-    console.log(slots)
+
     return (
       <div className="app">
-        <h2 className="h6">New appointment</h2>
         <div className="app-header">
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
-        <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div
-            className="button"
-            id="GP-button"
-            onClick={e => this.handleClick('gp')}
-          >
-            GP
-          </div>
-          <div className="button" onClick={e => this.handleClick('therapist')}>
-            Therapist
-          </div>
-          <div className="button" onClick={e => this.handleClick('physio')}>
-            Physio
-          </div>
-          <div className="button" onClick={e => this.handleClick('specialist')}>
-            Specialist
-          </div>
+        <h2 className="h6">New appointment</h2>
+        <div style={{ maxWidth: 900, margin: '24px auto' }}>
+          <h2 className="h6">Consultant Type</h2>
+          {consultant.map((item, index) => (
+            <Buttons
+              handleClick={this.handleClick}
+              key={index}
+              title={item}
+              selectedButton={this.state.selectedConsultantType}
+            />
+          ))}
+
           <div>
-            <strong>Appointments</strong>
+            <h2 className="h6">Appointment Date and time</h2>
             {slots.map(slot => (
-              <li
-                className="appointment-button"
-                key={availableSlots.id}
-                onClick={() => {
-                  this.setState({ selectedAppointment: slot })
-                }}
-              >
-                {slot.time}
-              </li>
+              <Buttons
+                title={slot.time}
+                handleClick={this.handleAppointmentClick}
+                key={slot.id}
+                selectedButton={this.state.selectedDate}
+              />
             ))}
           </div>
           <div>
-            <strong>Notes</strong>
-            <textarea />
+            <h2 className="h6">Appointment Type</h2>
+            {appTypeMedium.map((item, index) => (
+              <Buttons
+                handleClick={this.handleAppMedium}
+                key={index}
+                title={item}
+                selectedButton={this.state.selectedMedium}
+              />
+            ))}
           </div>
           <div>
-            <div
-              className="button"
-              onClick={() => {
-                /* TODO: submit the data */
-              }}
-            >
+            <h2 className="h6">Note</h2>
+            <textarea
+              className="note"
+              placeHolder="Describe your symptoms"
+              type="text"
+              value={this.state.symptoms}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <div className="button" onClick={this.handleSubmit}>
               Book appointment
             </div>
           </div>
