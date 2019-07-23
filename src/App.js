@@ -14,12 +14,11 @@ class App extends Component {
 
     this.state = {
       userId: 1,
-      selectedAppointmentType: 'audio',
+      selectedAppointmentType: '',
       selectedConsultantType: null,
       availableSlots: [],
       availableSlotsByConsultantType: [],
       selectedDate: '',
-      selectedMedium: '',
       symptoms: '',
     }
   }
@@ -52,7 +51,7 @@ class App extends Component {
 
   handleAppMedium = item => {
     this.setState({
-      selectedMedium: item,
+      selectedAppointmentType: item,
     })
   }
 
@@ -62,11 +61,32 @@ class App extends Component {
     })
   }
 
-  handleSubmit = e => {
-    const data = new FormData(e.target.value)
-    fetch('http://localhost:3010/appointments', {
-      method: 'POST',
-      body: data,
+  handleSubmit = async e => {
+    e.preventDefault()
+    const body = {
+      notes: this.state.symptoms,
+      userId: 2,
+      consultantType: this.state.selectedConsultantType,
+      appointmentType: this.state.selectedAppointmentType,
+      dateTime: this.state.selectedDate,
+    }
+    console.log(JSON.stringify(body))
+    try {
+      await fetch('http://localhost:3010/appointments', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      })
+    } catch (error) {
+      console.log({ error })
+    }
+    this.setState({
+      selectedAppointmentType: '',
+      selectedConsultantType: null,
+      selectedDate: '',
+      symptoms: '',
     })
   }
 
@@ -133,7 +153,7 @@ class App extends Component {
                 handleClick={this.handleAppMedium}
                 key={index}
                 title={item}
-                selectedButton={this.state.selectedMedium}
+                selectedButton={this.state.selectedAppointmentType}
               />
             ))}
           </div>
@@ -141,7 +161,7 @@ class App extends Component {
             <h2 className="h6">Note</h2>
             <textarea
               className="note"
-              placeHolder="Describe your symptoms"
+              placeholder="Describe your symptoms"
               type="text"
               value={this.state.symptoms}
               onChange={this.handleChange}
