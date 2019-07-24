@@ -1,5 +1,30 @@
 @import './constants.scss';
 
+@font-face {
+  font-family: Lato-Bold;
+  font-family: Lato-Regular;
+  src: url(./assets/fonts/Lato-Bold.ttf);
+  src: url(./assets/fonts/Lato-Regular.ttf);
+}
+
+body {
+  max-width: 900px;
+  margin: 24px auto;
+}
+.app-user {
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: $border-standard;
+}
+.user-name {
+  padding: 20px;
+  font-family: 'Lato-Bold', sans-serif;
+}
+
+.app-user-logo {
+  width: 80px;
+  height: 80px;
+}
 .app-header {
   padding: $gutter-size--large;
   display: flex;
@@ -16,45 +41,93 @@
   display: flex;
   justify-content: center;
   margin-bottom: 100px;
+  border-radius: 10px;
+  outline: 0;
+  font-family: 'Lato-Bold', sans-serif;
+  border: 1px solid grey;
 }
 
-.button {
+.button-xl {
   box-sizing: border-box;
-  padding: 12px;
+  padding: 20px;
   background-color: $primary-dark;
-  color: $secondary-light;
+  color: whitesmoke;
   width: 100%;
-  height: 42px;
+  font-size: 1.5em;
   margin-right: 12px;
-  display: inline-block;
-  text-align: center;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  outline: 0;
+  font-family: 'Lato-Bold', sans-serif;
+  margin-top: 30px;
 }
 
 h2 {
   &.h6 {
     font-size: 24px;
+    display: flex;
+    margin-left: 10px;
+    font-family: 'Lato-Bold', sans-serif;
   }
 }
 
-.appointment-button {
-  color: $secondary-light;
-  margin: 12px;
-  text-align: center;
-  height: 50px;
-  background-color: $primary-dark;
-  padding: 12px;
+h1 {
+  color: #2f333f;
+  font-family: 'Lato-Bold', sans-serif;
+}
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.button {
+  background-color: white;
+  color: grey;
+  outline: 0;
   box-sizing: border-box;
-  width: 150px;
   border: solid 1px $primary-dark;
+  border-radius: 30px;
+  font-family: 'Lato-Regular', sans-serif;
+  margin: 12px;
+  padding: 10px 20px;
+  transition: 0.3s;
 }
 
-.appointment-button1 {
-  color: black;
-  margin: 12px;
-  text-align: center;
-  height: 50px;
-  padding: 12px;
-  box-sizing: border-box;
-  width: 150px;
-  border: solid 1px $primary-dark;
+.selected {
+  background-color: $primary-dark;
+  color: white;
+}
+
+.button:hover {
+  background-color: $primary-dark;
+  color: whitesmoke;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.fa {
+  font-size: 28px;
+  color: grey;
+}
+
+textarea::-webkit-input-placeholder {
+  padding: 15px;
+}
+
+.section {
+  margin-top: 20px;
+}
+@media only screen and (max-width: 600px) {
+  body {
+    max-width: 300px;
+    margin: 24px auto;
+  }
+  .container {
+    flex-direction: column;
+    justify-content: center;
+  }
 }
