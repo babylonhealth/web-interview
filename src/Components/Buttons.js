@@ -5,9 +5,7 @@ const Button = props => {
   const { selectedButton, handleClick, title } = props
   return (
     <button
-      className={
-        selectedButton === title ? 'appointment-button' : 'appointment-button1'
-      }
+      className={selectedButton === title ? 'button selected' : 'button '}
       onClick={e => handleClick(title)}
     >
       {title}
