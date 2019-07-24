@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
-
 import Buttons from './Components/Buttons'
+import moment from 'moment'
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
-
+//
 import './App.scss'
 
-const consultant = ['gp', 'therapist', 'physio', 'specialist']
-const appTypeMedium = ['audio', 'video']
+const consultant = ['GP', 'Therapist', 'Physio', 'Specialist']
+const appTypeMedium = ['Audio', 'Video']
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -20,13 +21,29 @@ class App extends Component {
       availableSlotsByConsultantType: [],
       selectedDate: '',
       symptoms: '',
+      UserInfo: {},
     }
   }
 
   async componentDidMount() {
+    this.getUser()
+    this.getData()
+  }
+
+  getUser = async () => {
+    try {
+      const fetchUserData = await fetch(`${API_ENDPOINT}/users/1`)
+      const userData = await fetchUserData.json()
+      this.setState({ UserInfo: userData })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  getData = async () => {
     try {
       const fetchData = await fetch(`${API_ENDPOINT}/availableSlots`)
       const data = await fetchData.json()
+
       this.setState({ availableSlots: data })
     } catch (error) {
       console.log(error)
@@ -70,7 +87,7 @@ class App extends Component {
       appointmentType: this.state.selectedAppointmentType,
       dateTime: this.state.selectedDate,
     }
-    console.log(JSON.stringify(body))
+
     try {
       await fetch('http://localhost:3010/appointments', {
         method: 'POST',
@@ -123,42 +140,70 @@ class App extends Component {
         <div className="app-header">
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
-        <h2 className="h6">New appointment</h2>
-        <div style={{ maxWidth: 900, margin: '24px auto' }}>
-          <h2 className="h6">Consultant Type</h2>
-          {consultant.map((item, index) => (
-            <Buttons
-              handleClick={this.handleClick}
-              key={index}
-              title={item}
-              selectedButton={this.state.selectedConsultantType}
-            />
-          ))}
-
-          <div>
-            <h2 className="h6">Appointment Date and time</h2>
-            {slots.map(slot => (
+        <h1 className="h1">New appointment</h1>
+        <span className="app-user">
+          <img
+            src={this.state.UserInfo.avatar}
+            className="app-user-logo"
+            alt="User Avatar"
+          />
+          <h3 className="user-name">
+            {this.state.UserInfo.firstName} {this.state.UserInfo.lastName}
+          </h3>
+        </span>
+        <div className="section">
+          <span className="icon">
+            <i className="fa fa-stethoscope"></i>
+            <h2 className="h6">Consultant Type</h2>
+          </span>
+          <div className="container">
+            {consultant.map((item, index) => (
               <Buttons
-                title={slot.time}
-                handleClick={this.handleAppointmentClick}
-                key={slot.id}
-                selectedButton={this.state.selectedDate}
-              />
-            ))}
-          </div>
-          <div>
-            <h2 className="h6">Appointment Type</h2>
-            {appTypeMedium.map((item, index) => (
-              <Buttons
-                handleClick={this.handleAppMedium}
+                handleClick={this.handleClick}
                 key={index}
                 title={item}
-                selectedButton={this.state.selectedAppointmentType}
+                selectedButton={this.state.selectedConsultantType}
               />
             ))}
           </div>
-          <div>
-            <h2 className="h6">Note</h2>
+          <div className="section">
+            <span className="icon">
+              <i className="fa fa-clock-o"></i>
+              <h2 className="h6">Appointment Date and time</h2>
+            </span>
+            <div className="container">
+              {slots.map(slot => (
+                <Buttons
+                  title={moment(slot.time).format('MMM DD, h:mm a')}
+                  handleClick={this.handleAppointmentClick}
+                  key={slot.id}
+                  selectedButton={this.state.selectedDate}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="section">
+            <span className="icon">
+              <i className="fa fa-video-camera"></i>
+              <h2 className="h6">Appointment Type</h2>
+            </span>
+            <div className="container">
+              {appTypeMedium.map((item, index) => (
+                <Buttons
+                  handleClick={this.handleAppMedium}
+                  key={index}
+                  title={item}
+                  selectedButton={this.state.selectedAppointmentType}
+                />
+              ))}
+            </div>
+          </div>
+          <div className="section">
+            {' '}
+            <span className="icon">
+              <i className="fa fa-comments-o"></i>
+              <h2 className="h6">Notes</h2>
+            </span>
             <textarea
               className="note"
               placeholder="Describe your symptoms"
@@ -167,9 +212,10 @@ class App extends Component {
               onChange={this.handleChange}
             />
           </div>
+          <hr />
           <div>
-            <div className="button" onClick={this.handleSubmit}>
-              Book appointment
+            <div className="button-xl" onClick={this.handleSubmit}>
+              Book
             </div>
           </div>
         </div>
