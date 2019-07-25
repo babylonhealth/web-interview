@@ -3,10 +3,19 @@ import Buttons from './Components/Buttons'
 import moment from 'moment'
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
-//
 import './App.scss'
 
-const consultant = ['GP', 'Therapist', 'Physio', 'Specialist']
+const consultant = ['gp', 'therapist', 'physio', 'specialist']
+const captalizeConsultantTitle = consultantArray =>
+  consultantArray.map(name =>
+    name
+      .split(' ')
+      .map(word => word[0].toUpperCase() + word.slice(1).toLowerCase())
+      .join('')
+  )
+
+const consultantTitle = captalizeConsultantTitle(consultant)
+
 const appTypeMedium = ['Audio', 'Video']
 
 class App extends Component {
@@ -21,7 +30,7 @@ class App extends Component {
       availableSlotsByConsultantType: [],
       selectedDate: '',
       symptoms: '',
-      UserInfo: {},
+      userInfo: {},
     }
   }
 
@@ -34,7 +43,7 @@ class App extends Component {
     try {
       const fetchUserData = await fetch(`${API_ENDPOINT}/users/1`)
       const userData = await fetchUserData.json()
-      this.setState({ UserInfo: userData })
+      this.setState({ userInfo: userData })
     } catch (error) {
       console.log(error)
     }
@@ -50,7 +59,7 @@ class App extends Component {
     }
   }
 
-  handleClick = btnValue => {
+  handleConsultantClick = btnValue => {
     const filteredData = this.state.availableSlots.filter(item =>
       item.consultantType.includes(btnValue)
     )
@@ -72,7 +81,7 @@ class App extends Component {
     })
   }
 
-  handleChange = e => {
+  handleNote = e => {
     this.setState({
       symptoms: e.target.value,
     })
@@ -108,8 +117,6 @@ class App extends Component {
   }
 
   render() {
-    // calculate matching slots
-
     const {
       availableSlots,
       availableSlotsByConsultantType,
@@ -120,21 +127,6 @@ class App extends Component {
       selectedConsultantType !== null
         ? availableSlotsByConsultantType
         : availableSlots
-    // for (let i = 0; i < this.state.availableSlots.length; i++) {
-    //   for (
-    //     let j = 0;
-    //     j < this.state.availableSlots[i]['consultantType'].length;
-    //     j++
-    //   ) {
-    //     if (
-    //       this.state.availableSlots[j]['consultantType'][i] ===
-    //       this.state.selectedAppointmentType
-    //     ) {
-    //       slots.push(this.state.availableSlots[j])
-    //     }
-    //   }
-    // }
-
     return (
       <div className="app">
         <div className="app-header">
@@ -143,23 +135,23 @@ class App extends Component {
         <h1 className="h1">New appointment</h1>
         <span className="app-user">
           <img
-            src={this.state.UserInfo.avatar}
+            src={this.state.userInfo.avatar}
             className="app-user-logo"
             alt="User Avatar"
           />
           <h3 className="user-name">
-            {this.state.UserInfo.firstName} {this.state.UserInfo.lastName}
+            {this.state.userInfo.firstName} {this.state.userInfo.lastName}
           </h3>
         </span>
         <div className="section">
           <span className="icon">
             <i className="fa fa-stethoscope"></i>
-            <h2 className="h6">Consultant Type</h2>
+            <h2>Consultant Type</h2>
           </span>
           <div className="container">
-            {consultant.map((item, index) => (
+            {consultantTitle.map((item, index) => (
               <Buttons
-                handleClick={this.handleClick}
+                handleClick={this.handleConsultantClick}
                 key={index}
                 title={item}
                 selectedButton={this.state.selectedConsultantType}
@@ -169,7 +161,7 @@ class App extends Component {
           <div className="section">
             <span className="icon">
               <i className="fa fa-clock-o"></i>
-              <h2 className="h6">Appointment Date and time</h2>
+              <h2>Appointment Date and time</h2>
             </span>
             <div className="container">
               {slots.map(slot => (
@@ -185,7 +177,7 @@ class App extends Component {
           <div className="section">
             <span className="icon">
               <i className="fa fa-video-camera"></i>
-              <h2 className="h6">Appointment Type</h2>
+              <h2>Appointment Type</h2>
             </span>
             <div className="container">
               {appTypeMedium.map((item, index) => (
@@ -202,14 +194,14 @@ class App extends Component {
             {' '}
             <span className="icon">
               <i className="fa fa-comments-o"></i>
-              <h2 className="h6">Notes</h2>
+              <h2>Notes</h2>
             </span>
             <textarea
               className="note"
               placeholder="Describe your symptoms"
               type="text"
               value={this.state.symptoms}
-              onChange={this.handleChange}
+              onChange={this.handleNote}
             />
           </div>
           <hr />
