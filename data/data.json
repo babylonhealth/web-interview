@@ -11,43 +11,43 @@
   "availableSlots": [
     {
       "id": 1,
-      "consultantType": ["GP"],
+      "consultantType": ["gp"],
       "appointmentType": ["audio", "video"],
       "time": "2019-11-27T10:11:00.000Z"
     },
     {
       "id": 2,
-      "consultantType": ["Specialist", "GP"],
+      "consultantType": ["specialist", "gp"],
       "appointmentType": ["audio", "video"],
       "time": "2019-12-01T14:16:30.000Z"
     },
     {
       "id": 3,
-      "consultantType": ["GP"],
+      "consultantType": ["gp"],
       "appointmentType": ["audio", "video"],
       "time": "2019-10-08T16:17:30.000Z"
     },
     {
       "id": 4,
-      "consultantType": ["Therapist", "GP"],
+      "consultantType": ["therapist", "gp"],
       "appointmentType": ["audio", "video"],
       "time": "2019-11-16T16:18:30.000Z"
     },
     {
       "id": 5,
-      "consultantType": ["Specialist"],
+      "consultantType": ["specialist"],
       "appointmentType": ["audio", "video"],
       "time": "2019-12-26T17:19:00.000Z"
     },
     {
       "id": 6,
-      "consultantType": ["GP"],
+      "consultantType": ["gp"],
       "appointmentType": ["audio", "video"],
       "time": "2019-09-23T18:20:00.000Z"
     },
     {
       "id": 7,
-      "consultantType": ["GP"],
+      "consultantType": ["gp"],
       "appointmentType": ["audio", "video"],
       "time": "2019-08-30T19:21:30.000Z"
     }
