@@ -11,81 +11,44 @@
   "availableSlots": [
     {
       "id": 1,
-      "consultantType": [
-        "gp"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-11-27T10:11:00.000Z"
     },
     {
       "id": 2,
-      "consultantType": [
-        "specialist",
-        "gp"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["specialist", "gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-12-01T14:16:30.000Z"
     },
     {
       "id": 3,
-      "consultantType": [
-        "gp"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-10-08T16:17:30.000Z"
     },
     {
       "id": 4,
-      "consultantType": [
-        "therapist",
-        "gp"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["therapist", "gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-11-16T16:18:30.000Z"
     },
     {
       "id": 5,
-      "consultantType": [
-        "specialist"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["specialist"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-12-26T17:19:00.000Z"
     },
     {
       "id": 6,
-      "consultantType": [
-        "gp"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-09-23T18:20:00.000Z"
     },
     {
       "id": 7,
-      "consultantType": [
-        "gp"
-      ],
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "consultantType": ["gp"],
+      "appointmentType": ["audio", "video"],
       "time": "2019-08-30T19:21:30.000Z"
     }
   ],
@@ -95,241 +58,8 @@
       "notes": "I have a headache.",
       "userId": 1,
       "consultantType": "GP appointment",
-      "appointmentType": [
-        "audio",
-        "video"
-      ],
+      "appointmentType": ["audio", "video"],
       "dateTime": "2019-08-30T20:21:30.000Z"
-    },
-    {
-      "notes": "",
-      "userId": 2,
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 2
-    },
-    {
-      "notes": "",
-      "userId": 2,
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 3
-    },
-    {
-      "notes": "",
-      "userId": 2,
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 4
-    },
-    {
-      "notes": "",
-      "userId": 2,
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 5
-    },
-    {
-      "notes": "",
-      "userId": 2,
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 6
-    },
-    {
-      "notes": "",
-      "userId": 2,
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 7
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 8
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 9
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 10
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 11
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 12
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 13
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 14
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 15
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 16
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 17
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 18
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 19
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 20
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 21
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 22
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 23
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 24
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 25
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 26
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 27
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 28
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 29
-    },
-    {
-      "notes": "",
-      "consultantType": null,
-      "appointmentType": "",
-      "dateTime": "",
-      "id": 30
-    },
-    {
-      "notes": "dsdsd",
-      "consultantType": "Therapist",
-      "appointmentType": "Video",
-      "dateTime": "Nov 16, 4:18 pm",
-      "id": 31
-    },
-    {
-      "notes": "e",
-      "consultantType": "Gp",
-      "appointmentType": "Video",
-      "dateTime": "Nov 27, 10:11 am",
-      "id": 32
-    },
-    {
-      "notes": "fwefw",
-      "consultantType": "Specialist",
-      "appointmentType": "Video",
-      "dateTime": "Dec 26, 5:19 pm",
-      "id": 33
     }
   ]
 }
