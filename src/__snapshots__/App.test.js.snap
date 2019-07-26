@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`match the snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="app"
+  >
+    <div
+      class="app-header"
+    >
+      <img
+        alt="Babylon Health"
+        class="app-logo"
+        data-testid="babylon-logo"
+        src="logo.png"
+      />
+    </div>
+    <h1
+      class="h1"
+    >
+      New appointment
+    </h1>
+    <span
+      class="app-user"
+    >
+      <img
+        alt="User Avatar"
+        class="app-user-logo"
+        data-testid="avatar"
+      />
+      <h3
+        class="user-name"
+      >
+         
+      </h3>
+    </span>
+    <div
+      class="section"
+    >
+      <span
+        class="icon"
+      >
+        <i
+          class="fa fa-stethoscope"
+        />
+        <h2>
+          Consultant Type
+        </h2>
+      </span>
+      <div
+        class="container"
+      >
+        <button
+          class="button "
+        >
+          Gp
+        </button>
+        <button
+          class="button "
+        >
+          Therapist
+        </button>
+        <button
+          class="button "
+        >
+          Physio
+        </button>
+        <button
+          class="button "
+        >
+          Specialist
+        </button>
+      </div>
+      <div
+        class="section"
+      >
+        <span
+          class="icon"
+        >
+          <i
+            class="fa fa-clock-o"
+          />
+          <h2>
+            Appointment Date and time
+          </h2>
+        </span>
+        <div
+          class="container"
+        >
+          <h3>
+            loading
+          </h3>
+        </div>
+      </div>
+      <div
+        class="section"
+      >
+        <span
+          class="icon"
+        >
+          <i
+            class="fa fa-video-camera"
+          />
+          <h2>
+            Appointment Type
+          </h2>
+        </span>
+        <div
+          class="container"
+        >
+          <button
+            class="button "
+          >
+            Audio
+          </button>
+          <button
+            class="button "
+          >
+            Video
+          </button>
+        </div>
+      </div>
+      <div
+        class="section"
+      >
+         
+        <span
+          class="icon"
+        >
+          <i
+            class="fa fa-comments-o"
+          />
+          <h2>
+            Notes
+          </h2>
+        </span>
+        <textarea
+          aria-label="note for the symptoms"
+          class="note"
+          data-testid="symptoms"
+          placeholder="Describe your symptoms"
+          type="text"
+        />
+      </div>
+      <hr />
+      <div>
+        <button
+          class="button-xl"
+          data-testid="button-xl"
+        >
+          Book
+        </button>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
