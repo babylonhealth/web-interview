@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Buttons from './Components/Buttons'
+import axios from 'axios'
 import moment from 'moment'
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
@@ -37,8 +38,8 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.getUser()
     this.getData()
+    this.getUser()
   }
 
   getUser = async () => {
@@ -46,9 +47,9 @@ class App extends Component {
       loading: true,
     })
     try {
-      const fetchUserData = await fetch(`${API_ENDPOINT}/users/1`)
-      const userData = await fetchUserData.json()
-      this.setState({ userInfo: userData, loading: false })
+      const userData = await axios.get(`${API_ENDPOINT}/users/1`)
+
+      this.setState({ userInfo: userData.data, loading: false })
     } catch (error) {
       this.setState({
         error,
@@ -59,10 +60,8 @@ class App extends Component {
   getData = async () => {
     this.setState({ loading: true })
     try {
-      const fetchData = await fetch(`${API_ENDPOINT}/availableSlots`)
-      const data = await fetchData.json()
-
-      this.setState({ availableSlots: data, loading: false })
+      const availableSlot = await axios.get(`${API_ENDPOINT}/availableSlots`)
+      this.setState({ availableSlots: availableSlot.data, loading: false })
     } catch (error) {
       this.setState({
         error,
@@ -107,7 +106,12 @@ class App extends Component {
       selectedConsultantType,
       selectedAppointmentType,
       selectedDate,
+      availableSlots,
     } = this.state
+    const date = availableSlots.find(
+      item => moment(item.time).format('MMM DD, h:mm a') === selectedDate
+    )
+    console.log(date)
     if (
       symptoms === '' ||
       userInfo === '' ||
@@ -121,20 +125,14 @@ class App extends Component {
     } else {
       const body = {
         notes: symptoms,
-        userId: userInfo.userId,
+        userId: userInfo.id,
         consultantType: selectedConsultantType,
         appointmentType: selectedAppointmentType,
-        dateTime: selectedDate,
+        dateTime: date.time,
       }
 
       try {
-        await fetch('http://localhost:3010/appointments', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(body),
-        })
+        await axios.post('http://localhost:3010/appointments', body)
       } catch (error) {
         this.setState({
           error,
@@ -204,7 +202,7 @@ class App extends Component {
               <i className="fa fa-clock-o"></i>
               <h2>Appointment Date and time</h2>
             </span>
-            <div className="container">
+            <div className="container" data-testid="slot">
               {loading ? (
                 <h3>loading</h3>
               ) : (
@@ -214,7 +212,6 @@ class App extends Component {
                     handleClick={this.handleAppointmentClick}
                     key={slot.id}
                     selectedButton={selectedDate}
-                    data-testid="date"
                   />
                 ))
               )}
