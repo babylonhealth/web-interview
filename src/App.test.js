@@ -7,9 +7,33 @@ import {
   waitForElement,
 } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
+import axiosMock from 'axios'
 import App from './App'
 
 afterEach(cleanup)
+
+it('fetch and display date', async () => {
+  axiosMock.get.mockResolvedValueOnce({
+    data: [
+      {
+        id: 1,
+        consultantType: ['gp'],
+        appointmentType: ['audio', 'video'],
+        time: '2019-11-27T10:11:00.000Z',
+      },
+      {
+        id: 2,
+        consultantType: ['specialist', 'gp'],
+        appointmentType: ['audio', 'video'],
+        time: '2019-12-01T14:16:30.000Z',
+      },
+    ],
+  })
+  const { getByTestId, getByText } = render(<App />)
+  const resolvedSlot = await waitForElement(() => getByTestId('slot'))
+  expect(resolvedSlot).toHaveTextContent('Nov 27, 10:11 amDec 01, 2:16 pm')
+  expect(axiosMock.get).toHaveBeenCalledTimes(2)
+})
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
@@ -41,13 +65,6 @@ it('match the snapshot', () => {
 
   expect(asFragment()).toMatchSnapshot()
 })
-
-// it('check the date', async () => {
-//   const { getByTestId } = render(<App />)
-
-//   await waitForElement(() => getByTestId('date'))
-//   // expect(getByTestId('date')).toBeInTheDocument()
-// })
 
 it('check it has loading', () => {
   const { getByText } = render(<App />)
