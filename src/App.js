@@ -3,6 +3,7 @@ import Buttons from './Components/Buttons'
 import moment from 'moment'
 import logo from './logo.png'
 import { API_ENDPOINT } from './config'
+import UserSection from './Components/UserSection'
 import './App.scss'
 
 const consultant = ['gp', 'therapist', 'physio', 'specialist']
@@ -23,7 +24,6 @@ class App extends Component {
     super(props)
 
     this.state = {
-      userId: 1,
       selectedAppointmentType: '',
       selectedConsultantType: null,
       availableSlots: [],
@@ -31,6 +31,8 @@ class App extends Component {
       selectedDate: '',
       symptoms: '',
       userInfo: {},
+      error: null,
+      loading: false,
     }
   }
 
@@ -40,28 +42,38 @@ class App extends Component {
   }
 
   getUser = async () => {
+    this.setState({
+      loading: true,
+    })
     try {
       const fetchUserData = await fetch(`${API_ENDPOINT}/users/1`)
       const userData = await fetchUserData.json()
-      this.setState({ userInfo: userData })
+      this.setState({ userInfo: userData, loading: false })
     } catch (error) {
-      console.log(error)
+      this.setState({
+        error,
+        loading: false,
+      })
     }
   }
   getData = async () => {
+    this.setState({ loading: true })
     try {
       const fetchData = await fetch(`${API_ENDPOINT}/availableSlots`)
       const data = await fetchData.json()
 
-      this.setState({ availableSlots: data })
+      this.setState({ availableSlots: data, loading: false })
     } catch (error) {
-      console.log(error)
+      this.setState({
+        error,
+        loading: false,
+      })
     }
   }
 
   handleConsultantClick = btnValue => {
     const filteredData = this.state.availableSlots.filter(item =>
-      item.consultantType.includes(btnValue)
+      item.consultantType.includes(btnValue.toLowerCase())
     )
     this.setState({
       availableSlotsByConsultantType: filteredData,
@@ -89,31 +101,53 @@ class App extends Component {
 
   handleSubmit = async e => {
     e.preventDefault()
-    const body = {
-      notes: this.state.symptoms,
-      userId: 2,
-      consultantType: this.state.selectedConsultantType,
-      appointmentType: this.state.selectedAppointmentType,
-      dateTime: this.state.selectedDate,
-    }
-
-    try {
-      await fetch('http://localhost:3010/appointments', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body),
+    const {
+      symptoms,
+      userInfo,
+      selectedConsultantType,
+      selectedAppointmentType,
+      selectedDate,
+    } = this.state
+    if (
+      symptoms === '' ||
+      userInfo === '' ||
+      selectedAppointmentType === '' ||
+      selectedConsultantType === '' ||
+      selectedDate === ''
+    ) {
+      this.setState({
+        error: 'Please fill the form completely',
       })
-    } catch (error) {
-      console.log({ error })
+    } else {
+      const body = {
+        notes: symptoms,
+        userId: userInfo.userId,
+        consultantType: selectedConsultantType,
+        appointmentType: selectedAppointmentType,
+        dateTime: selectedDate,
+      }
+
+      try {
+        await fetch('http://localhost:3010/appointments', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(body),
+        })
+      } catch (error) {
+        this.setState({
+          error,
+        })
+      }
+      this.setState({
+        selectedAppointmentType: '',
+        selectedConsultantType: null,
+        selectedDate: '',
+        symptoms: '',
+        error: null,
+      })
     }
-    this.setState({
-      selectedAppointmentType: '',
-      selectedConsultantType: null,
-      selectedDate: '',
-      symptoms: '',
-    })
   }
 
   render() {
@@ -121,6 +155,12 @@ class App extends Component {
       availableSlots,
       availableSlotsByConsultantType,
       selectedConsultantType,
+      selectedAppointmentType,
+      loading,
+      userInfo,
+      selectedDate,
+      symptoms,
+      error,
     } = this.state
 
     let slots =
@@ -130,19 +170,20 @@ class App extends Component {
     return (
       <div className="app">
         <div className="app-header">
-          <img src={logo} className="app-logo" alt="Babylon Health" />
-        </div>
-        <h1 className="h1">New appointment</h1>
-        <span className="app-user">
           <img
-            src={this.state.userInfo.avatar}
-            className="app-user-logo"
-            alt="User Avatar"
+            src={logo}
+            className="app-logo"
+            alt="Babylon Health"
+            data-testid="babylon-logo"
           />
-          <h3 className="user-name">
-            {this.state.userInfo.firstName} {this.state.userInfo.lastName}
-          </h3>
-        </span>
+        </div>
+
+        <h1 className="h1">New appointment</h1>
+        <UserSection
+          firstName={userInfo.firstName}
+          lastName={userInfo.lastName}
+          avatar={userInfo.avatar}
+        />
         <div className="section">
           <span className="icon">
             <i className="fa fa-stethoscope"></i>
@@ -154,7 +195,7 @@ class App extends Component {
                 handleClick={this.handleConsultantClick}
                 key={index}
                 title={item}
-                selectedButton={this.state.selectedConsultantType}
+                selectedButton={selectedConsultantType}
               />
             ))}
           </div>
@@ -164,14 +205,19 @@ class App extends Component {
               <h2>Appointment Date and time</h2>
             </span>
             <div className="container">
-              {slots.map(slot => (
-                <Buttons
-                  title={moment(slot.time).format('MMM DD, h:mm a')}
-                  handleClick={this.handleAppointmentClick}
-                  key={slot.id}
-                  selectedButton={this.state.selectedDate}
-                />
-              ))}
+              {loading ? (
+                <h3>loading</h3>
+              ) : (
+                slots.map(slot => (
+                  <Buttons
+                    title={moment(slot.time).format('MMM DD, h:mm a')}
+                    handleClick={this.handleAppointmentClick}
+                    key={slot.id}
+                    selectedButton={selectedDate}
+                    data-testid="date"
+                  />
+                ))
+              )}
             </div>
           </div>
           <div className="section">
@@ -185,7 +231,7 @@ class App extends Component {
                   handleClick={this.handleAppMedium}
                   key={index}
                   title={item}
-                  selectedButton={this.state.selectedAppointmentType}
+                  selectedButton={selectedAppointmentType}
                 />
               ))}
             </div>
@@ -197,18 +243,25 @@ class App extends Component {
               <h2>Notes</h2>
             </span>
             <textarea
+              aria-label="note for the symptoms"
               className="note"
+              data-testid="symptoms"
               placeholder="Describe your symptoms"
               type="text"
-              value={this.state.symptoms}
+              value={symptoms}
               onChange={this.handleNote}
             />
           </div>
           <hr />
           <div>
-            <div className="button-xl" onClick={this.handleSubmit}>
+            {error && <h3 className="fillFormAlert">{error}</h3>}
+            <button
+              data-testid="button-xl"
+              className="button-xl"
+              onClick={this.handleSubmit}
+            >
               Book
-            </div>
+            </button>
           </div>
         </div>
       </div>
