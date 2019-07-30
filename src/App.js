@@ -17,10 +17,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    document
-      .querySelectorAll('button')
-      .querySelectorAll('[id=GP-button]')
-      .attachEventHandler('click', this.onClick)
+    // Add a click handler to the GP button below so we can avoid needing to add an event handler to the GP button
+    // document
+    //   .querySelectorAll('button')
+    //   .querySelectorAll('[id=GP-button]')
+    //   .attachEventHandler('click', this.onClick)
 
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then(res => res.json())
@@ -32,9 +33,10 @@ class App extends Component {
       })
   }
 
-  onClick() {
-    this.setState({ selectedAppointmentType: 'gp' })
-  }
+  // Dont need this function for now as we call set state on the GP button directly for now
+  // onClick() {
+  //   this.setState({ selectedAppointmentType: 'gp' })
+  // }
 
   render() {
     // calculate matching slots
@@ -61,7 +63,13 @@ class App extends Component {
           <img src={logo} className="app-logo" alt="Babylon Health" />
         </div>
         <div style={{ maxWidth: 600, margin: '24px auto' }}>
-          <div className="button" id="GP-button">
+          <div
+            className="button"
+            id="GP-button"
+            onClick={e => {
+              this.setState({ selectedAppointmentType: 'gp' })
+            }}
+          >
             GP
           </div>
           <div
@@ -92,6 +100,7 @@ class App extends Component {
             <strong>Appointments</strong>
             {slots.map(slot => (
               <li
+                key={slot.id}
                 className="appointment-button"
                 onClick={() => {
                   this.setState({ selectedAppointment: slot })
