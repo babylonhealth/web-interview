@@ -1,29 +1,10 @@
-@import './constants.scss';
+@import 'assets/styles/_constants';
 
-.app-header {
-  padding: $gutter-size--large;
+@import 'assets/styles/base';
+@import 'assets/styles/heading';
 
-  img {
-    max-height: 33px;
-  }
-
-  border-bottom: $border-standard;
-}
-
-.button {
-  box-sizing: border-box;
-  padding: 12px;
-  background-color: $primary-dark;
-  color: $secondary-light;
-  width: calc(25% - 12px);
-  height: 42px;
-  margin-right: 12px;
-  display: inline-block;
-  text-align: center;
-}
-
-h2 {
-  &.h6 {
-    font-size: 24px;
-  }
+.app {
+  width: 100%;
+  max-width: $ipadWidth;
+  margin: 0 auto;
 }
