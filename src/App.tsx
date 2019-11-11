@@ -6,9 +6,11 @@ import { User } from 'components/user/user.component'
 
 import 'App.scss'
 import { TopBar } from 'components/top-bar/top-bar.component'
+import { UserType } from 'types/user.type'
 
-export default class App extends Component<Component> {
+export default class App extends Component {
   modelService: any
+  user: UserType
 
   constructor(props: Component) {
     super(props)
@@ -19,6 +21,12 @@ export default class App extends Component<Component> {
       userId: 1,
       selectedAppointmentType: 'gp',
       availableSlots: [],
+    }
+
+    this.user = {
+      avatar: '',
+      firstName: 'Jane',
+      secondName: 'Doe',
     }
   }
 
@@ -38,6 +46,8 @@ export default class App extends Component<Component> {
     return (
       <div className="app">
         <TopBar />
+        <h1 className="heading heading--large">New Appointment</h1>
+        <User user={this.user} />
       </div>
     )
   }
