@@ -1,0 +1,15 @@
+html {
+  font-size: 1px; // easy round number for REM
+
+  @media (min-width: $largeMobileWidth) {
+    font-size: 0.227vw; // this beauty enabled autoscaling of fonts and everything else that uses REM
+  }
+
+  @media (min-width: $ipadWidth) {
+    font-size: 1.75px; // fix the font again here to prevent things going crazy on larger screens
+  }
+}
+
+body {
+  font-size: 16rem;
+}

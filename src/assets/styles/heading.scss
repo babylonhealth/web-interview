@@ -1,0 +1,10 @@
+@import '_constants';
+
+.heading {
+  margin: 0;
+  font-family: sans-serif;
+
+  &--large {
+    font-size: 24rem;
+  }
+}

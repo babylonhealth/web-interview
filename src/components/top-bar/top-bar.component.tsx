@@ -2,6 +2,8 @@ import React, { FunctionComponent } from 'react'
 
 import { Icon } from 'components/icon/icon.component'
 
+import './top-bar.scss'
+
 export const TopBar: FunctionComponent = () => {
   return (
     <div className="top-bar">
