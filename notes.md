@@ -16,6 +16,7 @@ As my experience with modern React is limited, my first step was to research in 
 
 ### Next steps
 
+- Add proper accessibility. The app is semantic so this wouldn't be difficult
 - I appreciate i've maybe overengineered the form. I was trying to be clever at the beginning then got myself in a tangle. I'd focus more on the data structure first and work from there if I was to do this again.
 - propose a more easily consumable data structure
 - look in to maybe using Axios for POSTing form data? I polyfilled fetch for simplicity
