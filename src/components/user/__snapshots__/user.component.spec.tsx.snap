@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User should match snapshot 1`] = `
+<div
+  className="user"
+>
+  <img
+    alt="Kenny"
+    className="user__avatar"
+    src=""
+  />
+  <span
+    className="user__name"
+  >
+    Kenny McCormick
+  </span>
+</div>
+`;

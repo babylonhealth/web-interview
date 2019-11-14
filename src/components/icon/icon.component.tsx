@@ -6,5 +6,10 @@ type IconType = {
 }
 
 export const Icon: FunctionComponent<IconType> = ({ alias, modifier }) => {
-  return <span className="icon icon--{alias}" title="{alias}"></span>
+  return (
+    <span
+      className={`icon icon--${alias}${modifier ? `icon--${modifier}` : ''}`}
+      title={alias}
+    ></span>
+  )
 }

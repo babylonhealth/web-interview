@@ -1,0 +1,39 @@
+@import 'assets/styles/_constants.scss';
+
+.form-field {
+  &__label {
+    font-size: 11rem;
+    font-weight: 600;
+    color: $label-color;
+  }
+
+  textarea {
+    padding: 7rem 8rem;
+    border-radius: 5rem;
+    border: 1px solid $outline-dark;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100px;
+    max-height: 200px;
+  }
+
+  &__input {
+    font-size: 11rem;
+    margin-top: 16rem;
+
+    &:focus {
+      border-color: $focus-border;
+      outline: none;
+    }
+  }
+
+  &--radio {
+    .form-field__input {
+      margin: #{16rem - $gutter-size} -#{$gutter-size} -#{$gutter-size};
+    }
+
+    .form-field__option {
+      margin: $gutter-size;
+    }
+  }
+}

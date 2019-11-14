@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBar should match snapshot 1`] = `
+<div
+  className="top-bar"
+>
+  <button
+    className="top-bar__burger"
+  >
+    <span
+      className="icon icon--burger"
+      title="burger"
+    />
+  </button>
+  <div
+    className="top-bar__logo"
+  >
+    <img
+      alt="Babylon is awesome"
+      src="logo.png"
+    />
+  </div>
+</div>
+`;

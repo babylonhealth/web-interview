@@ -2,14 +2,16 @@ import React, { FunctionComponent } from 'react'
 
 import { Icon } from 'components/icon/icon.component'
 
-import './top-bar.scss'
+import './top-bar.component.scss'
 
 export const TopBar: FunctionComponent = () => {
   return (
     <div className="top-bar">
-      <Icon alias="burger" />
+      <button className="top-bar__burger">
+        <Icon alias="burger" />
+      </button>
       <div className="top-bar__logo">
-        <img src="assets/images/logo.png" alt="" />
+        <img src={require('assets/images/logo.png')} alt="Babylon is awesome" />
       </div>
     </div>
   )
