@@ -20,17 +20,24 @@
     ]
   },
   "dependencies": {
+    "@types/jest": "^24.0.23",
     "@types/react": "^16.9.11",
     "@types/react-dom": "^16.9.4",
+    "dayjs": "^1.8.17",
+    "enzyme-adapter-react-16": "^1.15.1",
     "json-server": "^0.15.0",
     "node-sass": "^4.12.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "typescript": "^3.7.2"
+    "react": "16.8.6",
+    "react-dom": "16.8.6",
+    "react-test-renderer": "16.8.6",
+    "typescript": "^3.7.2",
+    "whatwg-fetch": "^3.0.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.3",
+    "enzyme": "^3.10.0",
     "husky": "^2.5.0",
     "lint-staged": "^8.2.1",
     "react-scripts": "^3.0.1"
