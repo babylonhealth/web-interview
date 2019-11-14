@@ -2,9 +2,13 @@
 
 @import 'assets/styles/base';
 @import 'assets/styles/heading';
+@import 'assets/styles/divider';
+@import 'assets/styles/pill';
+@import 'assets/styles/button.scss';
 
 .app {
   width: 100%;
   max-width: $ipadWidth;
   margin: 0 auto;
+  padding: 0 12rem;
 }

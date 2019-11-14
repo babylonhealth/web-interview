@@ -1,0 +1,18 @@
+@import 'assets/styles/_constants.scss';
+
+.user {
+  display: flex;
+  align-items: center;
+
+  &__name {
+    font-size: 12rem;
+    margin-left: $gutter-size--large;
+    font-weight: 400;
+    color: $bold-text-color;
+  }
+
+  &__avatar {
+    width: 40rem;
+    margin: -1.5rem; // to remove whitespace around image
+  }
+}

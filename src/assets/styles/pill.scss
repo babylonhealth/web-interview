@@ -1,0 +1,30 @@
+.pill {
+  cursor: default;
+  display: inline-block;
+  border: $border-standard;
+  font-size: 11rem;
+  line-height: 1;
+  padding: 5rem 10rem;
+  border-radius: 12rem;
+  color: $secondary-dark;
+  user-select: none;
+
+  &:not(&--active):not(&--disabled) {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      border-color: $outline-dark;
+    }
+  }
+
+  &--active {
+    background-color: $positive;
+    border-color: $positive;
+    color: #fff;
+  }
+
+  &--disabled {
+    opacity: 0.4;
+  }
+}

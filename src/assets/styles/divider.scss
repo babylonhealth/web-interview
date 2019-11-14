@@ -1,0 +1,10 @@
+@import '_constants';
+
+.divider {
+  margin: 16rem 0;
+  border-top: $border-standard;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}

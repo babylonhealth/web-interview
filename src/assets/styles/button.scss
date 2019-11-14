@@ -1,0 +1,15 @@
+@import 'assets/styles/_constants.scss';
+
+.button {
+  display: inline-block;
+  border-radius: 5rem;
+  font-size: 11rem;
+  padding: 9rem 22rem;
+  line-height: 1;
+  text-align: center;
+
+  &--submit {
+    color: #fff;
+    background-color: $positive;
+  }
+}

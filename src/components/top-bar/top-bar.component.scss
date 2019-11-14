@@ -1,0 +1,21 @@
+@import 'assets/styles/_constants.scss';
+
+.top-bar {
+  display: flex;
+  position: sticky;
+  top: 0;
+  margin: 0 -12rem;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  border-bottom: $border_standard;
+  background-color: #fff;
+
+  &__logo {
+    height: 40px;
+
+    img {
+      height: 100%;
+    }
+  }
+}

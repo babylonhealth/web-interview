@@ -3,8 +3,10 @@
 .heading {
   margin: 0;
   font-family: sans-serif;
+  color: $bold-text-color;
 
   &--large {
     font-size: 24rem;
+    margin-top: 36rem;
   }
 }

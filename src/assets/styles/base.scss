@@ -12,4 +12,17 @@ html {
 
 body {
   font-size: 16rem;
+  font-family: sans-serif;
+}
+
+// basic normalise
+* {
+  box-sizing: border-box;
+}
+
+button {
+  appearance: none;
+  border: none;
+  color: inherit;
+  padding: 0;
 }
