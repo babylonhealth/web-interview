@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormFieldRadio should match snapshot 1`] = `
+<div
+  className="form-field form-field--radio"
+>
+  <div
+    className="form-field__label"
+  >
+    <span
+      className="icon icon--atom"
+      title="atom"
+    />
+    <span>
+      text
+    </span>
+  </div>
+  <div
+    className="form-field__input"
+  />
+</div>
+`;

@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormField should match snapshot 1`] = `
+<div
+  className="form-field form-field--input"
+>
+  <div
+    className="form-field__label"
+  >
+    <span
+      className="icon icon--atom"
+      title="atom"
+    />
+    <span>
+      text
+    </span>
+  </div>
+  <input
+    className="form-field__input"
+    onChange={[Function]}
+  />
+</div>
+`;

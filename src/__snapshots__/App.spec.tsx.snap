@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should match snapshot 1`] = `
+<div
+  className="app"
+>
+  <div
+    className="top-bar"
+  >
+    <button
+      className="top-bar__burger"
+    >
+      <span
+        className="icon icon--burger"
+        title="burger"
+      />
+    </button>
+    <div
+      className="top-bar__logo"
+    >
+      <img
+        alt="Babylon is awesome"
+        src="logo.png"
+      />
+    </div>
+  </div>
+  <h1
+    className="heading heading--large"
+  >
+    New Appointment
+  </h1>
+  <div
+    className="form"
+  >
+    <div
+      className="group"
+    >
+      <div
+        className="user"
+      >
+        <img
+          alt=""
+          className="user__avatar"
+          src=""
+        />
+        <span
+          className="user__name"
+        >
+           
+        </span>
+      </div>
+      <div
+        className="divider"
+      />
+      <div
+        className="form-field form-field--radio"
+      >
+        <div
+          className="form-field__label"
+        >
+          <span
+            className="icon icon--stethoscope"
+            title="stethoscope"
+          />
+          <span>
+            Consultant Type
+          </span>
+        </div>
+        <div
+          className="form-field__input"
+        />
+      </div>
+    </div>
+    <div
+      className="group"
+    >
+      <div
+        className="form-field form-field--radio"
+      >
+        <div
+          className="form-field__label"
+        >
+          <span
+            className="icon icon--clock"
+            title="clock"
+          />
+          <span>
+            Date & Time
+          </span>
+        </div>
+        <div
+          className="form-field__input"
+        />
+      </div>
+      <div
+        className="form-field form-field--radio"
+      >
+        <div
+          className="form-field__label"
+        >
+          <span
+            className="icon icon--radio"
+            title="radio"
+          />
+          <span>
+            Appointment Type
+          </span>
+        </div>
+        <div
+          className="form-field__input"
+        />
+      </div>
+      <div
+        className="form-field form-field--textarea"
+      >
+        <div
+          className="form-field__label"
+        >
+          <span
+            className="icon icon--video"
+            title="video"
+          />
+          <span>
+            Notes
+          </span>
+        </div>
+        <textarea
+          className="form-field__input"
+          onChange={[Function]}
+          placeholder="Describe your symptoms"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    className="bottom-bar"
+  >
+    <div
+      className="divider"
+    />
+    <button
+      className="button button--submit"
+      onClick={[Function]}
+    >
+      Book
+    </button>
+  </div>
+</div>
+`;
