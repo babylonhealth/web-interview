@@ -2,8 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import 'normalize.css'
 
-import App from './App'
 import registerServiceWorker from './registerServiceWorker'
+import AppointmentContainer from './components/AppointmentContainer'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+        <AppointmentContainer />, 
+document.getElementById('root'))
 registerServiceWorker()

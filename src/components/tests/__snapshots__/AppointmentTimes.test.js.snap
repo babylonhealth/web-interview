@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppointmentTimes /> consultant type NOT selected 1`] = `
+<p
+  data-testid="appointmentTimesLoading"
+>
+  Loading...
+</p>
+`;

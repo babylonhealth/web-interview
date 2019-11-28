@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppointmentContainer> 1`] = `
+<div
+  class="app-header"
+  data-testid="navigationBarComponent"
+>
+  <img
+    alt="Babylon Health"
+    class="app-logo"
+    data-testid="babylonLogo"
+    src="logo.png"
+  />
+</div>
+`;

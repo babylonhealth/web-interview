@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AppointmentNotes> 1`] = `
+<div
+  data-testid="appointmentNotesComponent"
+>
+  <strong
+    data-testid="appointmentNotesHeader"
+    style="color: rgb(72, 72, 72); font-family: 'Roboto', sans-serif; margin-bottom: 5px;"
+  >
+    Notes
+  </strong>
+  <br />
+  <textarea
+    class="notes"
+    data-testid="appointmentNotesTextArea"
+    placeholder="Describe your symptoms"
+    style="color: rgb(72, 72, 72); font-family: 'Roboto', sans-serif; margin-bottom: 5px;"
+  />
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+</div>
+`;

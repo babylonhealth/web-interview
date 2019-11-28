@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConsultantTypes /> slot data NOT recieved 1`] = `
+<p
+  data-testid="consultantTypesLoading"
+>
+  Loading...
+</p>
+`;

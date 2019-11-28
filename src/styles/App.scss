@@ -1,0 +1,188 @@
+@import './constants.scss';
+
+// shared styles
+
+
+.button {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $positive-light;
+  color: $white;
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: none;
+  outline: none;
+}
+
+
+.mobile-button {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $positive-light;
+  color: $white;
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  display: block;
+  text-align: center;
+  border-radius: 25px;
+  width: 100%;
+  box-shadow: none;
+  outline: none;
+}
+
+.white-button {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $white;
+  border-color: $light-grey;
+  color: $light-grey-font;
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: none;
+  outline: none;
+}
+
+.mobile-white-button {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $white;
+  border-color: $light-grey;
+  color: $light-grey-font;
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  display: block;
+  text-align: center;
+  border-radius: 25px;
+  width: 100%;
+  box-shadow: none;
+  outline: none;
+}
+
+
+h2 {
+  &.h6 {
+    font-family: "'Roboto', sans-serif";
+    font-size: 24px;
+  }
+}
+
+// components
+
+.app {
+  margin-left: 80px;
+  margin-right: 80px;
+}
+
+.app-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  height: 50px;
+  width: 200px;
+  margin-top: 15px;
+}
+
+.app-nav-bar {
+  padding: $gutter-size--large;
+
+  img {
+    max-height: 33px;
+  }
+
+  border-bottom: $border-standard;
+}
+
+
+
+.new-appointment-header {
+  font-family: "'Roboto', sans-serif";
+  font-size: 50px;
+  color: $header-grey-font;
+}
+
+.mobile-new-appointment-header {
+  font-family: "'Roboto', sans-serif";
+  font-size: 30px;
+  color: $header-grey-font;
+}
+
+.user-panel {
+  margin-top: 60px;
+}
+
+.user-panel img {
+  float: left;
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.user-name {
+  margin-top: 20px;
+  vertical-align: middle;
+}
+
+.user-panel {
+  margin-bottom: 60px;
+}
+
+.consultant-type-field {
+  padding: $gutter-size--large;
+  border-bottom: $border-standard;
+}
+
+.date-and-time-field {
+  padding: $gutter-size--large;
+  border-bottom: $border-standard;
+}
+
+.appointment-type-field {
+  padding: $gutter-size--large;
+  border-bottom: $border-standard;
+}
+
+.notes {
+  padding-left: 15px;
+  padding-top: 15px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 180px;
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+  border-color: grey;
+  box-shadow: none;
+  background-color: transparent;
+  resize: none;
+  outline: none;
+}
+
+.submit-button {
+  box-sizing: border-box;
+  padding: 12px;
+  background-color: $positive-light;
+  color: $white;
+  width: calc(25% - 12px);
+  height: 42px;
+  margin-right: 12px;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: 30px;
+  display: block;
+  width: 100%;
+  box-shadow: none;
+  outline: none;
+}
+
+

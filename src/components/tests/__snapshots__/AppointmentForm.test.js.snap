@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppointmentForm> 1`] = `
+<div>
+  <div
+    style="max-width: 900px; margin: 24px auto;"
+  >
+    <form
+      data-testid="appointmentForm"
+    >
+      <p
+        data-testid="consultantTypesLoading"
+      >
+        Loading...
+      </p>
+      <br />
+      <br />
+      <p
+        data-testid="appointmentTimesLoading"
+      >
+        Loading...
+      </p>
+      <br />
+      <br />
+      <p
+        data-testid="appointmentTypesLoading"
+      >
+        Loading...
+      </p>
+      <br />
+      <br />
+      <div
+        data-testid="appointmentNotesComponent"
+      >
+        <strong
+          data-testid="appointmentNotesHeader"
+          style="color: rgb(72, 72, 72); font-family: 'Roboto', sans-serif; margin-bottom: 5px;"
+        >
+          Notes
+        </strong>
+        <br />
+        <textarea
+          class="notes"
+          data-testid="appointmentNotesTextArea"
+          placeholder="Describe your symptoms"
+          style="color: rgb(72, 72, 72); font-family: 'Roboto', sans-serif; margin-bottom: 5px;"
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+      <hr />
+      <br />
+      <div>
+        <button
+          class="submit-button"
+          data-testid="submitButton"
+          style="font-family: 'Roboto', sans-serif; margin-bottom: 5px;"
+          type="submit"
+        >
+          Book
+        </button>
+        <br />
+        <br />
+        <br />
+      </div>
+    </form>
+  </div>
+</div>
+`;
