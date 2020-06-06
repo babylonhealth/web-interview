@@ -18,8 +18,8 @@ class App extends Component {
 
   componentDidMount() {
     fetch(`${API_ENDPOINT}/availableSlots`)
-      .then(res => res.json())
-      .then(json => {
+      .then((res) => res.json())
+      .then((json) => {
         this.setState({ availableSlots: json })
       })
       .catch(() => {
@@ -61,7 +61,7 @@ class App extends Component {
           </div>
           <div
             className="button"
-            onClick={e => {
+            onClick={(e) => {
               this.setState({ selectedAppointmentType: 'Therapist' })
             }}
           >
