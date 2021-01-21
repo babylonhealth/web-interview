@@ -19,6 +19,9 @@
       "git add"
     ]
   },
+  "resolutions": {
+    "immer": "^8.0.1"
+  },
   "dependencies": {
     "json-server": "^0.16.3",
     "node-sass": "^5.0.0",
