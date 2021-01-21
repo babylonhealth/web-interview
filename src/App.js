@@ -1,50 +1,45 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-import logo from './logo.png'
-import { API_ENDPOINT } from './config'
+import logo from './logo.png';
+import { API_ENDPOINT } from './config';
 
-import './App.scss'
+import './App.scss';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       userId: 1,
       selectedAppointmentType: 'gp',
       availableSlots: [],
-    }
+    };
   }
 
   componentDidMount() {
     fetch(`${API_ENDPOINT}/availableSlots`)
       .then((res) => res.json())
       .then((json) => {
-        this.setState({ availableSlots: json })
+        this.setState({ availableSlots: json });
       })
       .catch(() => {
         // TODO: Handle error here
-      })
+      });
   }
 
   onClick() {
-    this.setState({ selectedAppointmentType: 'gp' })
+    this.setState({ selectedAppointmentType: 'gp' });
   }
 
   render() {
     // calculate matching slots
-    let slots = []
+    let slots = [];
     for (let i = 0; i < this.state.availableSlots.length; i++) {
-      for (
-        let j = 0;
-        j < this.state.availableSlots[i]['consultantType'].length;
-        j++
-      ) {
+      for (let j = 0; j < this.state.availableSlots[i]['consultantType'].length; j++) {
         if (
-          this.state.availableSlots[j]['consultantType'][i] ===
-          this.state.selectedAppointmentType
+          this.state.availableSlots[j]['consultantType'][i] === this.state.selectedAppointmentType
         ) {
-          slots.push(this.state.availableSlots[j])
+          slots.push(this.state.availableSlots[j]);
         }
       }
     }
@@ -62,7 +57,7 @@ class App extends Component {
           <div
             className="button"
             onClick={(e) => {
-              this.setState({ selectedAppointmentType: 'Therapist' })
+              this.setState({ selectedAppointmentType: 'Therapist' });
             }}
           >
             Therapist
@@ -70,7 +65,7 @@ class App extends Component {
           <div
             className="button"
             onClick={(e) => {
-              this.setState({ selectedAppointmentType: 'Physio' })
+              this.setState({ selectedAppointmentType: 'Physio' });
             }}
           >
             Physio
@@ -78,7 +73,7 @@ class App extends Component {
           <div
             className="button"
             onClick={(e) => {
-              this.setState({ selectedAppointmentType: 'specialist' })
+              this.setState({ selectedAppointmentType: 'specialist' });
             }}
           >
             Specialist
@@ -89,7 +84,7 @@ class App extends Component {
               <li
                 className="appointment-button"
                 onClick={() => {
-                  this.setState({ selectedAppointment: slot })
+                  this.setState({ selectedAppointment: slot });
                 }}
               >
                 {slot.time}
@@ -112,8 +107,8 @@ class App extends Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
