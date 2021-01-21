@@ -30,7 +30,7 @@
   "devDependencies": {
     "husky": "^4.2.5",
     "lint-staged": "^10.2.9",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^4.0.1"
   },
   "browserslist": [
     ">0.2%",
